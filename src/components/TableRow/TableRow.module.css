@@ -1,0 +1,102 @@
+.TableRow {
+  flex: 1;
+}
+
+.summary:hover {
+  background-color: rgba(22, 160, 133, 0.3);
+}
+
+.summary {
+  border-bottom: 1px solid #ccc;
+  background-color: white;
+  padding: 20px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-gap: 10px;
+  align-items: center;
+  width: 100%;
+  word-break: break-word;
+}
+
+.tasks {
+  color: white;
+  display: inline-block;
+}
+
+.taskIconFocused {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+}
+
+.delete:hover::after {
+  content: 'MARK DONE';
+  font-size: 10px;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  z-index: 4;
+  display: inline-block;
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 10px;
+  background-color: grey;
+}
+
+.edit:hover::after {
+  content: 'EDIT';
+  font-size: 10px;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  z-index: 4;
+  display: inline-block;
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 10px;
+  background-color: grey;
+}
+
+.open {
+  background-color: rgba(22, 160, 133, 0.3);
+  border-bottom: 1px solid transparent;
+}
+
+.details {
+  display: flex;
+  background-color: rgba(22, 160, 133, 0.1);
+  padding: 0px 20px 20px;
+  height: 200px;
+}
+
+.more {
+  text-align: right;
+  align-items: center;
+}
+
+.more > div {
+  justify-content: flex-end;
+}
+
+
+@media all and (max-width: 600px) {
+
+  .summary {
+    flex: 1;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .summary > div {
+    padding: 10px;
+  }
+
+  .more {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2;
+    border-radius: 3px;
+    align-items: flex-end;
+  }
+
+}

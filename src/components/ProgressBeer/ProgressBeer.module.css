@@ -1,0 +1,50 @@
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.bubble1{
+  height: 12px;
+  width: 12px;
+  background-color: #fc9414;
+  border-radius: 50%;
+  margin: 0px 20px 0px 0px;
+  animation: pulse ease-out 1s infinite 1s;
+  animation-direction: alternate;
+  animation-fill-mode: backwards;
+}
+
+.bubble2{
+  height: 20px;
+  width: 20px;
+  background-color: #fc9414;
+  border-radius: 50%;
+  margin: 4px 6px 6px 30px;
+  animation: pulse ease 1.5s infinite 0.5s;
+  animation-direction: alternate;
+  animation-fill-mode: backwards;
+}
+
+.bubble3{
+  height: 8px;
+  width: 8px;
+  background-color: #fc9414;
+  border-radius: 50%;
+  margin: 6px;
+  animation: pulse ease-out 1s infinite 0s;
+  animation-direction: alternate;
+  animation-fill-mode: backwards;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+    transform: translate(2px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-2px, 0px);
+  }
+}

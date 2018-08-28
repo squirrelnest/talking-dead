@@ -1,0 +1,87 @@
+/* ALL TableS */
+
+.TableContainer {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.TableHeader {
+  display: flex;
+  flex-direction: row;
+  border-top: 3px solid #4b6a8e;
+  padding: 40px;
+  background-color: white;
+  color: #4b6a8e;
+  width: 100%;
+}
+
+.TableLabel {
+  text-transform: uppercase;
+}
+
+.TableLabels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 0.25fr;
+  grid-gap: 10px;
+  background-color: #4b6a8e;
+  width: 100%;
+  color: white;
+  padding: 20px;
+}
+
+.TableTotals {
+  border-top: 3px solid  #4b6a8e;
+  background-color: white;
+  padding: 40px;
+  display: grid;
+  grid-gap: 10px;
+  width: 100%;
+}
+
+.TableFooter {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(210, 218, 227);
+  padding: 40px;
+  width: 100%;
+}
+
+.sortColumn {
+  color: #ffec5e;
+}
+
+.asc:after {
+  content: ' ▼';
+}
+
+.desc:after {
+  content: ' ▲';
+}
+
+/* RESPONSIVE STYLES */
+
+@media all and (max-width: 600px) {
+
+  .TableContainer {
+    height: 500px;
+    overflow: auto;
+  }
+
+  .TableHeader {
+    border-bottom: 1px solid #ccc;
+    overflow: auto;
+    padding: 20px;
+  }
+
+  .TableLabels {
+    display: none;
+    visibility: hidden;
+  }
+
+  .TableFooter {
+    padding: 20px;
+  }
+
+}

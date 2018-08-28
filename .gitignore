@@ -1,0 +1,43 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Testing
+__snapshots__
+/coverage
+cypress/videos
+cypress/screenshots
+lib-cov
+
+# Dependencies
+node_modules
+
+# Build artifacts
+public
+.idea
+/build
+build
+dist
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# settings
+.history/
+.vscode/
+typings/
+jsconfig.json
+typings.json
+.lock-wscript
+react-webpack-babel
+create-react-app

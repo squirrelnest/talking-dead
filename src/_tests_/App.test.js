@@ -1,0 +1,29 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Adapter from 'enzyme-adapter-react-16'
+import { shallow, mount, configure, render } from 'enzyme'
+import { MemoryRouter, Route, Switch } from 'react-router'
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import configureStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import App from '../App'
+
+// initialize enzyme
+
+configure({ adapter: new Adapter() })
+
+// initialize moxck redux STORE
+
+const middlewares = [thunk] // add your middlewares like `redux-thunk`
+const mockStore = configureStore(middlewares)
+
+// UNIT TEST SUITE
+
+describe('App', () => {
+
+  it('renders without crashing', () => {
+    shallow(<App />)
+  })
+
+})

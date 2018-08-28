@@ -26,7 +26,7 @@ export function getCarFailure(error) {
 export function getCar(carID) {
   return (dispatch) => {
     dispatch(getCarPending())
-    return fetch(`https://private-4e19e-interviewapi3.apiary-mock.com/vehicles/19XFC2F59GE2276732016`, {
+    return fetch(`https://private-4e19e-interviewapi3.apiary-mock.com/vehicles/${carID}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

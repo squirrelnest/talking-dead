@@ -9,7 +9,7 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: Roboto,Trebuchet MS,Arial,Helvetica,sans-serif !important;
-  background-color: #fff;
+  background-color: #F7F7F7;
   font-size: 16px; /* FF does not let you override its minimum font-size */
 }
 
@@ -217,7 +217,7 @@ input[type='text']:disabled {
   cursor: not-allowed;
 }
 
-input:hover, textarea:hover {
+input:hover :not(.slider), textarea:hover {
   border-radius: 3px !important;
   border: 1px solid #ccc !important;
 }
@@ -267,6 +267,36 @@ textarea {
   padding: 10px;
 }
 
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 10px;
+  background: #fc9414;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 2px 2px 2px #777;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 2px 2px 2px #777;
+    cursor: pointer;
+}
 
 /* IMAGES *****************************/
 
@@ -355,9 +385,8 @@ hr {
 }
 
 .page {
-  height: 100%;
+  height: 100vh;
   position: relative;
-  margin: 40px;
 }
 
 .wrapper {
@@ -370,12 +399,11 @@ hr {
 }
 
 .panel {
-  border-top: 3px solid #4b6a8e;
   background-color: white;
-  height: fit-content;
-  height: -moz-fit-content;
-  padding: 40px;
+  height: 100%;
   width: 100%;
+  min-width: 400px;
+  padding: 40px;
 }
 
 .center {
@@ -416,6 +444,21 @@ hr {
 .row {
   display: flex;
   align-items: center;
+}
+
+.border-top {
+  border-top: 1px solid #ccc;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.col-2-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  padding: 20px 0px;
 }
 
 .buttonContainer {
@@ -465,6 +508,20 @@ footer {
 
 
 /* RESPONSIVE STYLES *******************/
+
+@media(max-width: 1200px) {
+
+  .panel {
+    height: auto;
+  }
+}
+
+@media(max-width: 400px) {
+
+  .panel {
+    height: 100%;
+  }
+}
 
 @media(max-width: 600px) {
 

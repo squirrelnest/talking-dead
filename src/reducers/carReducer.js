@@ -23,6 +23,7 @@ export default function carReducer(state = initialState, action) {
         ...state,
         loading: false,
         car: action.payload.data.vehicle,
+        financials: action.payload.data.vehicle.product_financials[0]
       }
 
     case GET_CAR_FAILURE:

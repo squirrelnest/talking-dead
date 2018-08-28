@@ -41,7 +41,7 @@ export class Card extends Component {
             <div><label>MONTHLY FEE</label>${(Number(car.product_financials[0].monthly_payment_cents))/100}</div>
           </div>
           <div>
-            <img src={car.image_location_list[0]} className={classes.cardImage} alt='car photo'/>
+            <img src={car.chrome_image_url} className={classes.cardImage} alt='car photo'/>
           </div>
           <div className={classes.cardBody}>
             <div><label>MILEAGE</label>{car.mileage.toLocaleString('en-US')}</div>

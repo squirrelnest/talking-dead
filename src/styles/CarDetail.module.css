@@ -1,97 +1,45 @@
-.orderDetailTableHeader {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.right {
-  justify-content: flex-end;
-  text-align: right;
-}
-
-.orderDetailTableLabels {
+.detailsGrid {
   display: grid;
-  grid-template-columns: 0.25fr 1fr 0.5fr 0.5fr 0.5fr;
-  grid-gap: 10px;
+  grid-template-columns: 2fr 1fr;
+  height: 100%;
+}
+
+.carousel {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
   align-items: center;
 }
 
-.orderDetailTableRow {
-  display: grid;
-  grid-template-columns: 0.25fr 1fr 0.5fr 0.5fr 0.5fr;
-  grid-gap: 10px;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  background-color: white;
-  padding: 20px;
-  width: 100%;
-  word-break: break-word;
-}
-
-.orderDetailTableRow:hover {
-  background-color: rgba(22, 160, 133, 0.3);
-}
-
-.orderDetailTableRow > div > input {
-  border: none;
-  background-color: transparent;
-  border-radius: 3px;
-}
-
-.orderDetailTableRow > div > input:hover,
-.orderDetailTableRow > div > input:focus {
-  background-color: white;
-}
-
-.orderDetailTableLabels > div:last-child,
-.orderDetailTableRow > div:last-child > input {
-  text-align: right;
-}
-
-.orderDetailTableTotals {
-  display: flex;
-  justify-content: space-between;
-  color: #4b6a8e;
-  text-transform: uppercase;
-  font-weight: 800;
-}
-
-.orderDetailTableFooter {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+.carouselImage {
+  background-repeat: no-repeat;
+  background-size: contain;
   width: 100%;
 }
 
+@media(max-width: 1200px) {
 
-@media all and (max-width: 600px) {
-
-  .orderDetailTableHeader {
+  .detailsGrid {
     display: block;
+    height: 100vh;
   }
 
-  .right {
-    text-align: left;
+  .carouselImage {
+    width: auto;
   }
 
-  .orderDetailTableRow {
-    grid-template-columns: 1fr 1fr;
+}
+
+@media(max-width: 700px) {
+
+  .detailsGrid {
+    display: block;
+    height: 100vh;
   }
 
-  .orderDetailTableLabels > div:nth-last-child(1),
-  .orderDetailTableRow > div:nth-last-child(1) {
-    text-align: left;
-  }
-
-  .orderDetailTableFooter {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .orderDetailTableTotals {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+  .carouselImage {
+    width: 100%;
   }
 
 }

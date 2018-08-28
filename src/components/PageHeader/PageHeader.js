@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import classes from './PageHeader.module.css'
 
 export class PageHeader extends Component {
 
@@ -14,7 +15,7 @@ export class PageHeader extends Component {
     const { children, headerLabel, firstName, lastName } = this.props
 
     return (
-      <div className='page-header'>
+      <div className={classes.pageHeader}>
         <h3 style={{ width: '100%'}}>{headerLabel}</h3>
           {children}
         <h3>{new Date().toLocaleDateString()}</h3>

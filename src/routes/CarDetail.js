@@ -25,7 +25,8 @@ class CarDetail extends Component {
       mileage: props.car.mileage,
       monthly_fee: props.financials.monthly_payment_cents/100,
       start_fee: props.financials.start_fee_cents/100,
-      taxed: false
+      taxed: false,
+      favorited: window.localStorage.getItem('favorites') !== "[]" ? JSON.parse(window.localStorage.getItem('favorites')).includes(props.match.params.carID) : false
     }
   }
 
@@ -44,6 +45,31 @@ class CarDetail extends Component {
         monthly_fee: nextProps.financials.monthly_payment_cents/100,
         start_fee: nextProps.financials.start_fee_cents/100
       })
+    }
+  }
+
+  toggleFavorite = (event, id) => {
+    event.preventDefault()
+    this.setState({
+      favorited: !this.state.favorited
+    })
+    if (window.localStorage.getItem('favorites')) {
+      let retrieved = JSON.parse(window.localStorage.getItem('favorites'))
+      if (retrieved.includes(id)) {
+        let removed = retrieved.filter(VIN => VIN !== id)
+        window.localStorage.clear()
+        window.localStorage.setItem('favorites', JSON.stringify(removed))
+        return
+      } else {
+        retrieved.push(id)
+        window.localStorage.setItem('favorites', JSON.stringify(retrieved))
+        return
+      }
+    } else {
+      let favorites = []
+      favorites.push(id)
+      window.localStorage.setItem('favorites', JSON.stringify(favorites))
+      return
     }
   }
 
@@ -69,8 +95,8 @@ class CarDetail extends Component {
 
   render() {
 
-    const { car, loading, error } = this.props
-    const { featuresOpen, monthly_fee, start_fee, mileage, taxed } = this.state
+    const { match, car, loading, error } = this.props
+    const { featuresOpen, monthly_fee, start_fee, mileage, taxed, favorited } = this.state
 
     return (
 
@@ -95,6 +121,7 @@ class CarDetail extends Component {
             :
 
               <React.Fragment>
+                <div onClick={(event) => this.toggleFavorite(event, match.params.carID)}><Ionicon icon={favorited ? 'md-heart' : 'md-heart-outline'} fontSize="30px" color={favorited ? 'red' : 'gray'} /></div>
                 <div>{car.model_year} {car.make}</div>
                 <h3>{car.model} {car.trim}</h3>
                 <div className='row col-2-grid'>

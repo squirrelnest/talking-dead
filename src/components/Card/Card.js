@@ -10,7 +10,7 @@ export class Card extends Component {
     super(props)
     this.state={
       isOpen: false,
-      favorited: false
+      favorited: window.localStorage.getItem('favorites') ? JSON.parse(window.localStorage.getItem('favorites')).includes(props.id) : false
     }
   }
 
@@ -29,12 +29,21 @@ export class Card extends Component {
     })
     if (window.localStorage.getItem('favorites')) {
       let retrieved = JSON.parse(window.localStorage.getItem('favorites'))
-      let addition = [{ "VIN": id }]
-      let stored = Object.assign(retrieved, addition)
-      window.localStorage.setItem('favorites', JSON.stringify(stored))
+      if (retrieved.includes(id)) {
+        let removed = retrieved.filter(VIN => VIN !== id)
+        window.localStorage.clear()
+        window.localStorage.setItem('favorites', JSON.stringify(removed))
+        return
+      } else {
+        retrieved.push(id)
+        window.localStorage.setItem('favorites', JSON.stringify(retrieved))
+        return
+      }
     } else {
-      let favorites = [{ "VIN": id }]
+      let favorites = []
+      favorites.push(id)
       window.localStorage.setItem('favorites', JSON.stringify(favorites))
+      return
     }
   }
 

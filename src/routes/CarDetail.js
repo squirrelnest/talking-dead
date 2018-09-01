@@ -30,8 +30,7 @@ class CarDetail extends Component {
   }
 
   componentWillMount() {
-    // this.props.getCar(this.props.match.params.carID)
-    this.props.getCar('19XFC2F59GE2276732016')
+    this.props.getCar(this.props.match.params.carID)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,23 +65,27 @@ class CarDetail extends Component {
       mileage: event.target.value,
     })
     this.setState(changeFees)
-    console.log(this.state.mileage)
   }
 
   render() {
 
-    const { id, car, loading } = this.props
+    const { car, loading, error } = this.props
+    const { featuresOpen, monthly_fee, start_fee, mileage, taxed } = this.state
 
     return (
 
       <div className='page'>
-
         <div className={classes.detailsGrid}>
-
           <div className={classes.carousel}>
-            <img src={loading ? Placeholder : car.chrome_image_url} alt='car photo' className={classes.carouselImage}/>
+            { error !== null ?
+                <React.Fragment>
+                  <div className='error'>{error}</div>
+                  <img src={Placeholder} alt='placeholder' className={classes.carouselImage}/>
+                </React.Fragment>
+              :
+                <img src={loading ? Placeholder : car.chrome_image_url} alt='car photo' className={classes.carouselImage}/>
+            }
           </div>
-
           <div className='panel'>
 
             { loading ?
@@ -95,8 +98,8 @@ class CarDetail extends Component {
                 <div>{car.model_year} {car.make}</div>
                 <h3>{car.model} {car.trim}</h3>
                 <div className='row col-2-grid'>
-                  <div>{car.mileage} Mi.</div>
-                  <div className='row' onClick={this.toggleDropdown}>Vehicle Features <IconDropdown isOpen={this.state.featuresOpen}/></div>
+                  <div>{car.mileage || 0} Mi.</div>
+                  <div className='row' onClick={this.toggleDropdown}>Vehicle Features <IconDropdown isOpen={featuresOpen}/></div>
                 </div>
                 <div className='row border-top col-2-grid'>
                   <div><label>EXTERIOR COLOR</label>{ car.exterior_color? car.exterior_color : 'Not Available'}</div>
@@ -104,10 +107,10 @@ class CarDetail extends Component {
                 </div>
                 <div className='border-top'>
                   <div className='col-2-grid'>
-                    <div><label>MONTHLY PYMT.</label>${this.state.monthly_fee}</div>
-                    <div><label>START PYMT.</label>${this.state.start_fee}</div>
+                    <div><label>MONTHLY PYMT.</label>${monthly_fee || 0}</div>
+                    <div><label>START PYMT.</label>${start_fee || 0}</div>
                   </div>
-                  <label>MILEAGE: {this.state.mileage}</label>
+                  <label>MILEAGE: {mileage}</label>
                   <div className='row space-between' style={{ paddingBottom: '20px' }}>
                     <span>1</span>
                     <input
@@ -117,14 +120,14 @@ class CarDetail extends Component {
                       min='1'
                       max='100000'
                       step='10'
-                      value={this.state.mileage}
+                      value={mileage}
                       onChange={(event) => this.handleSlider(event)}
                       style={{ margin: '10px' }}/>
                     <span>100,000</span>
                   </div>
                 </div>
                 <div className='row border-top space-between' style={{ paddingTop: '20px' }}>
-                  Price With{!this.state.taxed && 'out'} Tax <Toggler onChange={this.toggleTax}/>
+                  Price With{!taxed && 'out'} Tax <Toggler onChange={this.toggleTax}/>
                 </div>
               </React.Fragment>
 
@@ -144,6 +147,7 @@ class CarDetail extends Component {
 const mapStateToProps = (state) => {
   return {
     loading: state.car.loading,
+    error: state.car.error || null,
     car: state.car.car || {},
     financials: state.car.financials || {}
   }

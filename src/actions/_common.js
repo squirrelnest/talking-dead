@@ -1,5 +1,12 @@
 /* HELPER FUNCTIONS USED IN MULTIPLE ACTIONS AND REDUCERS */
 
+export function handleErrors(response) {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response;
+}
+
 export function checkHttpStatus(response) {
   if (!response.ok) {
       throw new xhrError({

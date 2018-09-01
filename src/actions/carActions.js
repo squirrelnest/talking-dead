@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import { handleErrors } from './_common'
 
 /* ACTION TYPES */
 
@@ -33,7 +34,11 @@ export function getCar(carID) {
         'Content-Type': 'application/json'
       }
     })
+      .then(response => handleErrors(response))
       .then(response => response.json())
       .then(car => dispatch(getCarSuccess(car)))
+      .catch(error => {
+        dispatch(getCarFailure(error))
+      })
     }
 }

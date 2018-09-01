@@ -3,7 +3,6 @@ import {
   GET_CAR_SUCCESS,
   GET_CAR_FAILURE
 } from 'actions/carActions'
-import { formatDate, formatDateTime, flattenObject } from 'actions/_common'
 
 const initialState = {
   car: []
@@ -14,7 +13,6 @@ export default function carReducer(state = initialState, action) {
 
     case GET_CAR_PENDING:
       return {
-        ...state,
         loading: true
       }
 
@@ -30,7 +28,7 @@ export default function carReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        error: action.payload.status
+        error: 'Not Available'
       }
 
     default:

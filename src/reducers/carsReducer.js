@@ -21,9 +21,9 @@ export default function carsReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        page: action.payload.data.current_page,
         page_count: action.payload.data.page_count,
-        cars: action.payload.data.vehicles,
+        qualifying_count: action.payload.data.qualifying_count,
+        cars: state.cars.concat(action.payload.data.vehicles)
       }
 
     case GET_CARS_FAILURE:

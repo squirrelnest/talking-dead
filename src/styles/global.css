@@ -135,38 +135,6 @@ section {
   margin: 40px 0px;
 }
 
-
-/* FORMS *******************/
-
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 40px;
-  padding-top: 40px;
-  margin: 0px;
-  width: 100%;
-}
-
-.form-flex-column { /* use when form fields are different widths */
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0px;
-  margin: 0px auto;
-  justify-content: space-between;
-}
-
-.form-flex-row { /* use when form fields are different widths */
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 0px;
-  margin: 0px auto;
-  justify-content: space-between;
-}
-
-
 /* INPUT FIELDS *******************/
 
 input[type='checkbox'] {
@@ -357,12 +325,11 @@ label {
 
 .error {
   display: block;
-  background: rgba(255,86,93,.15);
-  border-radius: 3px;
+  background: red;
   padding: 20px;
   border: 1px solid red;
   line-height: 1;
-  color: red;
+  color: white;
 }
 
 .textWarning {

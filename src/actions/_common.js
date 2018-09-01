@@ -1,4 +1,4 @@
-/* HELPER FUNCTIONS SHARED BY MULTIPLE ACTIONS AND REDUCERS */
+/* HELPER FUNCTIONS USED IN MULTIPLE ACTIONS AND REDUCERS */
 
 export function checkHttpStatus(response) {
   if (!response.ok) {

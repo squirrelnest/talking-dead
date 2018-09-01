@@ -1,0 +1,21 @@
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+.wheel {
+  width: 100px;
+  animation: spin 5s ease infinite;
+  animation-direction: alternate;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

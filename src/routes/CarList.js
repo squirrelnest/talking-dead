@@ -46,8 +46,6 @@ class CarList extends Component {
 
   handleRedirect = (event, id) => {
     event.preventDefault()
-    console.log(id)
-    // this.props.history.push(`/cars/19XFC2F59GE2276732016`)
     this.props.history.push(`/cars/${id}`)
   }
 

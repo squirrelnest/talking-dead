@@ -3,7 +3,6 @@ import classes from './Card.module.css'
 import IconDropdown from 'components/IconDropdown/IconDropdown'
 import Ionicon from 'react-ionicons'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 export class Card extends Component {
 
@@ -22,6 +21,23 @@ export class Card extends Component {
     })
   }
 
+  toggleFavorite = (event, id) => {
+    event.preventDefault()
+    event.stopPropagation()
+    this.setState({
+      favorited: !this.state.favorited
+    })
+    if (window.localStorage.getItem('favorites')) {
+      let retrieved = JSON.parse(window.localStorage.getItem('favorites'))
+      let addition = [{ "VIN": id }]
+      let stored = Object.assign(retrieved, addition)
+      window.localStorage.setItem('favorites', JSON.stringify(stored))
+    } else {
+      let favorites = [{ "VIN": id }]
+      window.localStorage.setItem('favorites', JSON.stringify(favorites))
+    }
+  }
+
   handleNotes = (event) => {
     event.preventDefault()
   }
@@ -29,6 +45,7 @@ export class Card extends Component {
   render() {
 
     const { id, car, children, notes, footer, clickHandler } = this.props
+    const { isOpen, favorited } = this.state
 
     return (
       <div className={classes.card} onClick={(event) => clickHandler(event, id)}>
@@ -37,7 +54,7 @@ export class Card extends Component {
           { children }
 
           <div className={classes.cardHeader}>
-            <div><Ionicon icon={this.state.favorited ? 'md-heart' : 'md-heart-outline'} fontSize="30px" color={this.state.favorited ? 'red' : 'gray'} /></div>
+            <div onClick={(event) => this.toggleFavorite(event, id)}><Ionicon icon={favorited ? 'md-heart' : 'md-heart-outline'} fontSize="30px" color={favorited ? 'red' : 'gray'} /></div>
             <div><label>MONTHLY FEE</label>${(Number(car.product_financials[0].monthly_payment_cents))/100}</div>
           </div>
           <div>
@@ -53,18 +70,18 @@ export class Card extends Component {
         { footer && <div className={classes.cardFooter}>{footer}</div> }
 
         { notes &&
-          <div className={[classes.cardFooter, this.state.isOpen ? classes.open : classes.closed].join(' ')}>
+          <div className={[classes.cardFooter, isOpen ? classes.open : classes.closed].join(' ')}>
             <div
               className={classes.notesHeader}
               onClick={this.toggleOpen}>
               NOTES
               <IconDropdown
                 iconColor='white'
-                isOpen={this.state.isOpen}>
+                isOpen={isOpen}>
               </IconDropdown>
             </div>,
             <div className={classes.notesBody}>
-              { this.state.isOpen ?
+              { isOpen ?
                 <textarea
                   placeholder={notes}
                   className={classes.notes}

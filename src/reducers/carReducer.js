@@ -28,7 +28,8 @@ export default function carReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        error: 'Not Available'
+        error: 'Details Not Available',
+        log: `${action.payload.code} ${action.payload.name}: ${action.payload.message}`
       }
 
     default:

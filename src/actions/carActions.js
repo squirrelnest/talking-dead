@@ -34,11 +34,9 @@ export function getCar(carID) {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => handleErrors(response))
+      // .then(response => handleErrors(response))
       .then(response => response.json())
       .then(car => dispatch(getCarSuccess(car)))
-      .catch(error => {
-        dispatch(getCarFailure(error))
-      })
+      .catch(error => dispatch(getCarFailure(error)))
     }
 }

@@ -1,36 +1,30 @@
 /* HELPER FUNCTIONS USED IN MULTIPLE ACTIONS AND REDUCERS */
 
 export function handleErrors(response) {
-    if (!response.ok) {
-      throw Error(response.statusText);
-    }
-    return response;
-}
-
-export function checkHttpStatus(response) {
   if (!response.ok) {
-      throw new xhrError({
-        type: response.status,
-        message: 'Http Status not OK',
-        response,
-      })
-    }
+    throw Error(response.statusText)
+    var error = new Error(response.statusText)
+    error.code = "EACCES"
+    console.log(error.code)
+    response.code = 'new code'
+    console.log(response.code)
+  }
   return response
 }
 
-export default class xhrError extends Error {
-  constructor({ type, message, response = {} }) {
-    super({ type, message, response })
-    this.type = type
-    this.message = message
-    this.response = response
+export class CustomError extends Error {
+  constructor(foo = 'bar', ...params) {
+    // Pass remaining arguments (including vendor specific ones) to parent constructor
+    super(...params);
 
-    this.name = 'xhrError'
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, this.constructor)
-    } else {
-      this.stack = (new Error(message)).stack
+    // Maintains proper stack trace for where our error was thrown (only available on V8)
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, CustomError);
     }
+
+    // Custom debugging information
+    this.foo = foo;
+    this.date = new Date();
   }
 }
 
@@ -71,7 +65,7 @@ export function flattenArray(array) {
         if (Array.isArray(a.children)) {
             result = result.concat(flattenArray(a.children))
         }
-    });
+    })
     return result
 }
 

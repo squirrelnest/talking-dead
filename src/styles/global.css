@@ -47,6 +47,12 @@ input:-webkit-autofill {
 
 /* TEXT *******************/
 
+p, span {
+  font-size: 1em ;
+  font-weight: 100;
+  hyphens: none;
+}
+
 a {
   color: currentColor;
   cursor: pointer;
@@ -57,7 +63,7 @@ a:hover, Link:hover, .link:hover {
   color: #fc9414;
 }
 
-h1, h2, h3, h4, h5, h6, .title {
+h1, h2, h3, h4, h5, h6 {
   font-family: Open Sans, sans-serif;
   color: #222;
   margin: 0px;
@@ -74,13 +80,13 @@ h2 {
   font-size: 1.5rem;
 }
 
-h3, .title {
-  font-weight: 300;
+h3 {
+  font-weight: 400;
   font-size: 1.5rem;
 }
 
 h4 {
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1.2rem;
   letter-spacing: 1px;
   line-height: 1.5;
@@ -91,12 +97,6 @@ h5 {
   font-size: 0.9rem;
   letter-spacing: 0.5px;
   line-height: 1.5;
-}
-
-p, span {
-  font-size: 1em ;
-  font-weight: 100;
-  hyphens: none;
 }
 
 /* INPUTS *******************/

@@ -1,5 +1,6 @@
 .card {
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 6px 0px rgba(0, 0, 0, 0.2);
+  border-top: 3px solid white;
   display: block;
   height: fit-content;
   overflow: hidden;
@@ -7,12 +8,12 @@
 
 .card:hover {
   box-shadow: none;
+  border-top: 3px solid #fc9414;
 }
 
 .cardContent {
   flex: 1;
   background-color: white;
-  border-top: 3px solid #fc9414;
   padding: 20px;
   height: 100%;
   overflow: auto;

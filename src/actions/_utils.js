@@ -1,30 +1,19 @@
 /* HELPER FUNCTIONS USED IN MULTIPLE ACTIONS AND REDUCERS */
 
-export function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText)
-    var error = new Error(response.statusText)
-    error.code = "EACCES"
-    console.log(error.code)
-    response.code = 'new code'
-    console.log(response.code)
+export function checkHTTPStatus(response) {
+  if (response.ok) {
+    return Promise.resolve(response)
+  } else {
+    return Promise.reject(new CustomError(response.statusText, response.status))
   }
-  return response
 }
 
 export class CustomError extends Error {
-  constructor(foo = 'bar', ...params) {
-    // Pass remaining arguments (including vendor specific ones) to parent constructor
-    super(...params);
-
-    // Maintains proper stack trace for where our error was thrown (only available on V8)
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, CustomError);
-    }
-
-    // Custom debugging information
-    this.foo = foo;
-    this.date = new Date();
+  constructor(message, code) {
+    super(message, code)
+    this.name = "CustomError"
+    this.message = this.constructor.message
+    this.code = this.constructor.code
   }
 }
 

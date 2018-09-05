@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { handleErrors } from './_common'
+import { checkHTTPStatus } from 'actions/_utils'
 
 /* ACTION TYPES */
 
@@ -34,9 +34,12 @@ export function getCar(carID) {
         'Content-Type': 'application/json'
       }
     })
-      // .then(response => handleErrors(response))
+      .then(checkHTTPStatus)
       .then(response => response.json())
       .then(car => dispatch(getCarSuccess(car)))
-      .catch(error => dispatch(getCarFailure(error)))
-    }
+      .catch(error => {
+        dispatch(getCarFailure(error))
+        console.log(error)
+      })
+  }
 }

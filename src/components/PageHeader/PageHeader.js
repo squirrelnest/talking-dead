@@ -12,7 +12,7 @@ export class PageHeader extends Component {
 
   render() {
 
-    const { children, headerLabel, firstName, lastName } = this.props
+    const { children, headerLabel } = this.props
 
     return (
       <div className={classes.pageHeader}>

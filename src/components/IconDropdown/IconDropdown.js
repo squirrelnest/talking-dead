@@ -1,17 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import classes from './IconDropdown.module.css'
 import Ionicon from 'react-ionicons'
 
-export default class IconDropdown extends Component {
+export const IconDropdown = (props) => {
 
-  render() {
-
-    const { iconColor, iconClassName, children, label, dropdownContentClassName, isOpen } = this.props
+    const { iconColor, iconClassName, children, label, dropdownContentClassName, isOpen } = props
 
     return (
 
       <div id='IconDropdown' className='IconDropdown'>
-        <div onClick={this.handleClick} className={['IconDropdown', 'row'].join(' ')}>
+        <div className={['IconDropdown', 'row'].join(' ')}>
           { label ? <div className='row'>{label}</div> : null }
           <div className='IconDropdown' style={{ position: 'relative'}}>
             <div className='IconDropdown' style={{backgroundColor: 'transparent', zIndex: 2, width: '24px', height: '24px', top: 0, position: 'absolute'}}></div>
@@ -20,7 +18,7 @@ export default class IconDropdown extends Component {
               icon='ios-arrow-down'
               fontSize='24px'
               color={iconColor}
-              className={['IconDropdown', 'iconPaddingLeft', iconClassName, this.props.isOpen ? classes.up : classes.down].join(' ')}
+              className={['IconDropdown', 'iconPaddingLeft', iconClassName, isOpen ? classes.up : classes.down].join(' ')}
               />
           </div>
         </div>
@@ -28,7 +26,7 @@ export default class IconDropdown extends Component {
         { children ?
 
           <div className={[classes.dropdownContainer, dropdownContentClassName].join(' ')}>
-            <div className={ this.props.isOpen ? classes.visible : classes.invisible }>
+            <div className={ isOpen ? classes.visible : classes.invisible }>
               {children}
             </div>
           </div>
@@ -37,6 +35,4 @@ export default class IconDropdown extends Component {
 
       </div>
     )
-  }
-
 }

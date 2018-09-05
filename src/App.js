@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import { Switch, Route, withRouter } from 'react-router'
+import { Switch, Route } from 'react-router'
 import 'styles/global.css'
 import CarList from 'routes/CarList'
 import CarDetail from 'routes/CarDetail'
@@ -27,5 +26,3 @@ export default class App extends Component {
     )
   }
 }
-
-// export default withRouter(connect()(App))

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getCars } from 'actions/carsActions'
 
@@ -25,29 +25,25 @@ class CarList extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.infiniteScroll, false)
+    window.addEventListener('scroll', this.handleScroll, false)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.infiniteScroll, false);
+    window.removeEventListener('scroll', this.handleScroll, false);
   }
 
-  infiniteScroll = () => {
-
+  handleScroll = () => {
     const { incrementPage } = this
     const { getCars, error, loading, page_count } = this.props
     const { page_number } = this.state
-
     // Exit if there's an error or data is loading or there are no more cars to load
     if (error || loading || page_number === page_count) return
-
     // If page has scrolled to the bottom, increment page number and fetch next set of cars
     if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.scrollHeight) {
       incrementPage()
       getCars(page_number)
     }
   }
-
 
   incrementPage = () => {
     this.setState({

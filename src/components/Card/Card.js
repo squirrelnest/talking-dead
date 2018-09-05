@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import classes from './Card.module.css'
-import IconDropdown from 'components/IconDropdown/IconDropdown'
+import { IconDropdown } from 'components/IconDropdown/IconDropdown'
 import Ionicon from 'react-ionicons'
 import { connect } from 'react-redux'
 
@@ -67,7 +67,7 @@ export class Card extends Component {
             <div><label>MONTHLY FEE</label>${(Number(car.product_financials[0].monthly_payment_cents))/100}</div>
           </div>
           <div>
-            <img src={car.chrome_image_url} className={classes.cardImage} alt='car photo'/>
+            <img src={car.chrome_image_url} className={classes.cardImage} alt='car'/>
           </div>
           <div className={classes.cardBody}>
             <div><label>MILEAGE</label>{car.mileage.toLocaleString('en-US')}</div>

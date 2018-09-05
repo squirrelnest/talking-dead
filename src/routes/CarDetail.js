@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getCar } from 'actions/carActions'
 import ProgressBar from 'components/ProgressBar/ProgressBar'
-import IconDropdown from 'components/IconDropdown/IconDropdown'
+import { IconDropdown } from 'components/IconDropdown/IconDropdown'
 import Toggler from 'components/Toggler/Toggler'
 import Ionicon from 'react-ionicons'
 import Placeholder from 'images/placeholder.svg'
@@ -109,7 +108,7 @@ class CarDetail extends Component {
                   <img src={Placeholder} alt='placeholder' className={classes.carouselImage}/>
                 </React.Fragment>
               :
-                <img src={loading ? Placeholder : car.chrome_image_url} alt='car photo' className={classes.carouselImage}/>
+                <img src={loading ? Placeholder : car.chrome_image_url} alt='car' className={classes.carouselImage}/>
             }
           </div>
           <div className='panel'>
@@ -120,7 +119,7 @@ class CarDetail extends Component {
 
             :
 
-              <React.Fragment>
+              <Fragment>
                 <div onClick={(event) => this.toggleFavorite(event, match.params.carID)}><Ionicon icon={favorited ? 'md-heart' : 'md-heart-outline'} fontSize="30px" color={favorited ? 'red' : 'gray'} /></div>
                 <div>{car.model_year} {car.make}</div>
                 <h3>{car.model} {car.trim}</h3>
@@ -156,7 +155,7 @@ class CarDetail extends Component {
                 <div className='row border-top space-between' style={{ paddingTop: '20px' }}>
                   Price With{!taxed && 'out'} Tax <Toggler onChange={this.toggleTax}/>
                 </div>
-              </React.Fragment>
+              </Fragment>
 
             }
 

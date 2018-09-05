@@ -11,6 +11,7 @@ html, body {
   padding: 0;
   font-family: Roboto,Trebuchet MS,Arial,Helvetica,sans-serif !important;
   background-color: #F7F7F7;
+  color: #222;
   font-size: 16px; /* FF does not let you override its minimum font-size */
 }
 
@@ -26,54 +27,23 @@ input:-webkit-autofill {
   color: rgb(0, 0, 0);
 }
 
-body.ReactModal__Body--open {
-  overflow: hidden;
-}
-
 /* COLORS *******************/
 
-.rico-skyblue {
-  color: #3498db;
-}
-
-.rico-grey {
-  color: #ccc;
-}
-
-.rico-white {
-  color: #fff;
-}
-
-.rico-lightblue {
-  color: #f2f6fa;
-}
-
-.rico-blue {
-  color: #4b6a8e;
-}
-
-.rico-darkblue {
-  color: #34485b;
-}
-
-.rico-orange {
+.orange {
   color: #fc9414;
 }
 
-.rico-teal {
-  color: #16a085;
-  color: rgb(22, 160, 133);
+.darkgrey {
+  color: #222;
 }
 
-.rico-pink {
-  color: #EC7B96;
-  color: rgb(236, 123, 150);
+.lightgrey {
+  color: #999;
 }
 
-.rico-yellow {
-  color: #ffec5e;
+.lightestgrey {
+  color: #ccc;
 }
-
 
 /* TEXT *******************/
 
@@ -84,12 +54,12 @@ a {
 }
 
 a:hover, Link:hover, .link:hover {
-  color: #16a085;
+  color: #fc9414;
 }
 
 h1, h2, h3, h4, h5, h6, .title {
   font-family: Open Sans, sans-serif;
-  color: #777; /* or #fff if dark background */
+  color: #222;
   margin: 0px;
   letter-spacing: 1px;
 }
@@ -112,7 +82,6 @@ h3, .title {
 h4 {
   font-weight: 400;
   font-size: 1.2rem;
-  color: #4b6a8e;
   letter-spacing: 1px;
   line-height: 1.5;
 }
@@ -120,7 +89,6 @@ h4 {
 h5 {
   font-weight: 100;
   font-size: 0.9rem;
-  color: #34495e;
   letter-spacing: 0.5px;
   line-height: 1.5;
 }
@@ -131,11 +99,7 @@ p, span {
   hyphens: none;
 }
 
-section {
-  margin: 40px 0px;
-}
-
-/* INPUT FIELDS *******************/
+/* INPUTS *******************/
 
 input[type='checkbox'] {
   display: inline-block;
@@ -154,26 +118,6 @@ input[type='text'], textarea {
   width: 100%;
   font-size: 1rem;
   font-family: Roboto,Trebuchet MS,Arial,Helvetica,sans-serif !important;
-}
-
-.input-border { /* for input fields with borders */
-  border-radius: 3px !important;
-  border: 1px solid #ccc !important;
-  background-color: #fff;
-  height: 40px;
-}
-
-.input-border:hover {
-  padding-left: 10px;
-}
-
-
-.input-underline { /* for input fields with only an underline */
-  border: 1px solid #ccc;
-  border-left: none;
-  border-top: none;
-  border-right: none;
-  border-radius: 0px;
 }
 
 input[type='date']:disabled,
@@ -277,20 +221,6 @@ textarea {
   margin-left: 10px;
 }
 
-.iconPadding {
-  margin: 10px;
-}
-
-.up {
-  transform: rotate(180deg);
-  transition: all ease 0.3s;
-}
-
-.down {
-  transform: rotate(360deg);
-  transition: all ease 0.3s;
-}
-
 /* LABELS *******************/
 
 label {
@@ -298,27 +228,10 @@ label {
   text-align: left;
   margin-bottom: 5px;
   font-size: .8rem ;
-  color: #777;
+  color: #999;
   letter-spacing: 0px;
   font-family: Roboto,Trebuchet MS,Arial,Helvetica,sans-serif;
   -webkit-transition: all .2s ease;
-}
-
-.label-inline {
-  display: inline-block;
-  margin: 0px 10px 0px 0px;
-  text-align: left;
-  font-size: 0.8em;
-  color: #777;
-  letter-spacing: 0px;
-  font-family: Roboto,Trebuchet MS,Arial,Helvetica,sans-serif;
-  text-transform: uppercase;
-}
-
-.disappearingLabels {
-  text-transform: uppercase;
-  display: none;
-  visibility: hidden;
 }
 
 /* ERROR MESSAGES *******************/
@@ -332,25 +245,7 @@ label {
   color: white;
 }
 
-.textWarning {
-  display: inline;
-  color: red;
-  font-size: .8rem;
-}
-
-.errorMessage {
-  float: right;
-  font-size: 0.8rem;
-  color: red;
-  padding-top: 5px;
-}
-
-
-/* CONTAINERS AND DIVIDERS *******************/
-
-hr {
-  margin: 40px 0px;
-}
+/* LAYOUT *******************/
 
 .page {
   height: 100vh;
@@ -382,33 +277,6 @@ hr {
   align-items: center;
 }
 
-.center-vertically { /* use when exact height of content is not known or fixed */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.container {
-  display: flex;
-  flex-direction: column; /* typically */
-  justify-content: space-between;
-  margin: 0 auto;
-  padding: 40px;
-  border: none;
-  outline: none;
-}
-
-.container-fit {
-  width: fit-content;
-  width: -moz-fit-content;
-  margin: 0 auto;
-  padding: 40px;
-  border: none;
-  outline: none;
-}
-
-
 .row {
   display: flex;
   align-items: center;
@@ -429,57 +297,12 @@ hr {
   padding: 20px 0px;
 }
 
-.buttonContainer {
-  text-align: right;
-}
-
-.overlay {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: 4000;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.shadow { /* use for modals, Drawers, Cards, overlays */
-  box-shadow: 0 0 5px 1px #777;
-}
-
-
-/* HEADERS & FOOTERS *******************/
-
-.header {
-  text-align: center;
-  padding-bottom: 40px;
-}
-
-footer {
-  display: flex !important;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  padding-top: 40px;
-  width: 100%;
-}
-
-
 /* RESPONSIVE STYLES *******************/
 
 @media(max-width: 1200px) {
 
   .panel {
     height: auto;
-  }
-}
-
-@media(max-width: 400px) {
-
-  .panel {
-    height: 100%;
   }
 }
 
@@ -494,7 +317,7 @@ footer {
     transform: none;
   }
 
-  .container, .container-fit {
+  .container {
     width: 100%;
     height: fit-content;
     height: -moz-fit-content;
@@ -502,43 +325,6 @@ footer {
     border: none;
     border-radius: 0px;
     padding: 0px;
-  }
-
-  .form-grid {
-    display: block;
-    width: 100%;
-  }
-
-  .form-flex-column {
-    display: block;
-    width: 100%;
-  }
-
-  .form-flex-row {
-    display: block;
-    width: 100%;
-  }
-
-  .page-header {
-    display: block;
-    text-align: left !important;
-    padding: 0px 0px 20px 0px;
-    align-items: flex-end;
-  }
-
-  .header {
-    padding-bottom: 20px;
-  }
-
-  .buttonContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .disappearingLabels {
-    display: block;
-    visibility: visible;
   }
 
 }

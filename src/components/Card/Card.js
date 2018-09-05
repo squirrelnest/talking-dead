@@ -47,13 +47,9 @@ export class Card extends Component {
     }
   }
 
-  handleNotes = (event) => {
-    event.preventDefault()
-  }
-
   render() {
 
-    const { id, car, children, notes, footer, clickHandler } = this.props
+    const { id, car, children, footer, clickHandler } = this.props
     const { isOpen, favorited } = this.state
 
     return (
@@ -77,28 +73,6 @@ export class Card extends Component {
         </div>
 
         { footer && <div className={classes.cardFooter}>{footer}</div> }
-
-        { notes &&
-          <div className={[classes.cardFooter, isOpen ? classes.open : classes.closed].join(' ')}>
-            <div
-              className={classes.notesHeader}
-              onClick={this.toggleOpen}>
-              NOTES
-              <IconDropdown
-                iconColor='white'
-                isOpen={isOpen}>
-              </IconDropdown>
-            </div>,
-            <div className={classes.notesBody}>
-              { isOpen ?
-                <textarea
-                  placeholder={notes}
-                  className={classes.notes}
-                  onClick={(event) => this.handleNotes(event)}></textarea>
-              : null }
-            </div>
-          </div>
-        }
 
       </div>
     )

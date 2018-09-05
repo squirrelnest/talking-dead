@@ -1,35 +1,16 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import classes from './PageHeader.module.css'
 
-export class PageHeader extends Component {
+export const PageHeader = (props) => {
 
-  constructor(props) {
-    super(props)
-    this.state={
-    }
-  }
+  const { children, headerLabel } = props
 
-  render() {
-
-    const { children, headerLabel } = this.props
-
-    return (
-      <div className={classes.pageHeader}>
-        <h3 style={{ width: '100%'}}>{headerLabel}</h3>
-          {children}
-        <h3>{new Date().toLocaleDateString()}</h3>
-      </div>
-    )
-  }
+  return (
+    <div className={classes.pageHeader}>
+      <h3 style={{ width: '100%'}}>{headerLabel}</h3>
+        {children}
+      <h3>{new Date().toLocaleDateString()}</h3>
+    </div>
+  )
 
 }
-
-// CONNECT TO REDUX STORE TO ACCESS GLOBAL STATE AND/OR DISPATCH THROUGH PROPS THROUGH PROPS
-
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, null)(PageHeader)

@@ -5,9 +5,7 @@
   "dependencies": {
     "es6-promise": "^4.2.4",
     "isomorphic-fetch": "^2.2.1",
-    "jwt-decode": "^2.2.0",
     "prop-types": "^15.6.2",
-    "query-string": "^5.1.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-ionicons": "^2.1.6",
@@ -15,8 +13,6 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts-cssmodules": "^1.1.10",
-    "react-select": "^2.0.0-beta.7",
-    "react-test-renderer": "^16.4.2",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
   },
@@ -26,7 +22,8 @@
     "enzyme-adapter-react-16": "^1.2.0",
     "react-router-enzyme-context": "^1.2.0",
     "redux-mock-store": "^1.5.3",
-    "start-server-and-test": "^1.7.0"
+    "start-server-and-test": "^1.7.0",
+    "react-test-renderer": "^16.4.2"
   },
   "scripts": {
     "start": "PORT=4000 react-scripts start",

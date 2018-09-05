@@ -4,18 +4,11 @@
   height: 100%;
 }
 
-.carousel {
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.carouselImage {
+.placeholderImage {
   background-repeat: no-repeat;
   background-size: contain;
   width: 100%;
+  height: 100%;
 }
 
 @media(max-width: 1200px) {
@@ -25,8 +18,11 @@
     height: 100vh;
   }
 
-  .carouselImage {
+  .placeholderImage {
+    display: block;
     width: auto;
+    height: 50%;
+    margin: 0 auto;
   }
 
 }
@@ -38,8 +34,9 @@
     height: 100vh;
   }
 
-  .carouselImage {
+  .placeholderImage {
     width: 100%;
+    height: auto;
   }
 
 }

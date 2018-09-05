@@ -4,14 +4,15 @@ import { getCar } from 'actions/carActions'
 import ProgressBar from 'components/ProgressBar/ProgressBar'
 import { IconDropdown } from 'components/IconDropdown/IconDropdown'
 import Toggler from 'components/Toggler/Toggler'
+import Carousel from 'components/Carousel/Carousel'
 import Ionicon from 'react-ionicons'
 import Placeholder from 'images/placeholder.svg'
 import classes from 'styles/CarDetail.module.css'
 
 function changeFees(nextState, nextProps) {
   return { // THIS IS A PLACEHOLDER FOR THE ACTUAL PRICING FORMULA, WHICH IS PROBABLY NOT LINEAR
-    monthly_fee: Math.round( (nextProps.financials.monthly_payment_cents/100) * ((nextProps.car.mileage) / (nextState.mileage)) * (nextState.taxed ? 1.1 : 1) ),
-    start_fee: Math.round( (nextProps.financials.start_fee_cents/100) * ((nextProps.car.mileage) / (nextState.mileage)) * (nextState.taxed ? 1.1 : 1) )
+    monthlyFee: Math.round( (nextProps.financials.monthly_payment_cents/100) * ((nextProps.car.mileage) / (nextState.mileage)) * (nextState.taxed ? 1.1 : 1) ),
+    startFee: Math.round( (nextProps.financials.start_fee_cents/100) * ((nextProps.car.mileage) / (nextState.mileage)) * (nextState.taxed ? 1.1 : 1) )
   }
 }
 
@@ -22,8 +23,8 @@ class CarDetail extends Component {
     this.state={
       featuresOpen: false,
       mileage: props.car.mileage,
-      monthly_fee: props.financials.monthly_payment_cents/100,
-      start_fee: props.financials.start_fee_cents/100,
+      monthlyFee: props.financials.monthly_payment_cents/100,
+      startFee: props.financials.start_fee_cents/100,
       taxed: false,
       favorited: window.localStorage.getItem('favorites') !== "[]" ? JSON.parse(window.localStorage.getItem('favorites')).includes(props.match.params.carID) : false
     }
@@ -41,8 +42,8 @@ class CarDetail extends Component {
     }
     if (nextProps.financials !== this.props.financials) {
       this.setState({
-        monthly_fee: nextProps.financials.monthly_payment_cents/100,
-        start_fee: nextProps.financials.start_fee_cents/100
+        monthlyFee: nextProps.financials.monthly_payment_cents/100,
+        startFee: nextProps.financials.start_fee_cents/100
       })
     }
   }
@@ -94,23 +95,21 @@ class CarDetail extends Component {
 
   render() {
 
-    const { match, car, loading, error } = this.props
-    const { featuresOpen, monthly_fee, start_fee, mileage, taxed, favorited } = this.state
+    const { match, car, loading, error, images } = this.props
+    const { featuresOpen, monthlyFee, startFee, mileage, taxed, favorited } = this.state
 
     return (
 
       <div className='page'>
+        { error !== null && <div className='error'>{error}</div> }
         <div className={classes.detailsGrid}>
-          <div className={classes.carousel}>
-            { error !== null ?
-                <React.Fragment>
-                  <div className='error'>{error}</div>
-                  <img src={Placeholder} alt='placeholder' className={classes.carouselImage}/>
-                </React.Fragment>
-              :
-                <img src={loading ? Placeholder : car.chrome_image_url} alt='car' className={classes.carouselImage}/>
-            }
-          </div>
+
+          { !loading ?
+              <img src={Placeholder} alt='car' className={classes.placeholderImage}/>
+            :
+              <Carousel images={images} />
+          }
+
           <div className='panel'>
 
             { loading ?
@@ -133,8 +132,8 @@ class CarDetail extends Component {
                 </div>
                 <div className='border-top'>
                   <div className='col-2-grid'>
-                    <div><label>MONTHLY PYMT.</label>${monthly_fee || 0}</div>
-                    <div><label>START PYMT.</label>${start_fee || 0}</div>
+                    <div><label>MONTHLY PYMT.</label>${monthlyFee || 0}</div>
+                    <div><label>START PYMT.</label>${startFee || 0}</div>
                   </div>
                   <label>MILEAGE: {mileage}</label>
                   <div className='row space-between' style={{ paddingBottom: '20px' }}>
@@ -175,6 +174,7 @@ const mapStateToProps = (state) => {
     loading: state.car.loading,
     error: state.car.error || null,
     car: state.car.car || {},
+    images: state.car.images || [],
     financials: state.car.financials || {}
   }
 }

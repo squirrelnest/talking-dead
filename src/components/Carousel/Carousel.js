@@ -8,8 +8,7 @@ export default class Carousel extends Component {
   constructor(props) {
     super(props)
     this.state={
-      currentSlide: 0,
-      imageUnavailable: false
+      currentSlide: 0
     }
   }
 
@@ -25,17 +24,9 @@ export default class Carousel extends Component {
     })
   }
 
-  handleError = () => {
-    this.setState({
-      imageUnavailable: true
-    })
-    console.log(this.state.imageUnavailable)
-  }
-
   render () {
 
-    const { images, error } = this.props
-    const { imageUnavailable } = this.state
+    const { images, error, loading } = this.props
 
     return (
       <div className={classes.carousel}>
@@ -45,7 +36,7 @@ export default class Carousel extends Component {
         </div>
         <div className={classes.imageContainer}>
           <img
-            src={error ? Placeholder : images[this.state.currentSlide]}
+            src={error || loading ? Placeholder : images[this.state.currentSlide]}
             className={classes.carouselImage}
             alt='car detail'
             onError={(event)=>event.target.setAttribute('src', Placeholder)}/>

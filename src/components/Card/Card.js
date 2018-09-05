@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import classes from './Card.module.css'
-import Ionicon from 'react-ionicons'
-import { connect } from 'react-redux'
+import Favorite from 'components/Favorite/Favorite'
 
-export class Card extends Component {
+export default class Card extends Component {
 
   constructor(props) {
     super(props)
     this.state={
-      favorited: window.localStorage.getItem('favorites') ? JSON.parse(window.localStorage.getItem('favorites')).includes(props.id) : false
     }
   }
 
@@ -19,36 +17,9 @@ export class Card extends Component {
     })
   }
 
-  toggleFavorite = (event, id) => {
-    event.preventDefault()
-    event.stopPropagation()
-    this.setState({
-      favorited: !this.state.favorited
-    })
-    if (window.localStorage.getItem('favorites')) {
-      let retrieved = JSON.parse(window.localStorage.getItem('favorites'))
-      if (retrieved.includes(id)) {
-        let removed = retrieved.filter(VIN => VIN !== id)
-        window.localStorage.clear()
-        window.localStorage.setItem('favorites', JSON.stringify(removed))
-        return
-      } else {
-        retrieved.push(id)
-        window.localStorage.setItem('favorites', JSON.stringify(retrieved))
-        return
-      }
-    } else {
-      let favorites = []
-      favorites.push(id)
-      window.localStorage.setItem('favorites', JSON.stringify(favorites))
-      return
-    }
-  }
-
   render() {
 
     const { id, car, children, footer, clickHandler } = this.props
-    const { favorited } = this.state
 
     return (
       <div className={classes.card} onClick={(event) => clickHandler(event, id)}>
@@ -57,7 +28,7 @@ export class Card extends Component {
           { children }
 
           <div className={classes.cardHeader}>
-            <div onClick={(event) => this.toggleFavorite(event, id)}><Ionicon icon={favorited ? 'md-heart' : 'md-heart-outline'} fontSize="30px" color={favorited ? 'red' : 'gray'} /></div>
+            <Favorite id={id}/>
             <div><label>MONTHLY FEE</label>${(Number(car.product_financials[0].monthly_payment_cents))/100}</div>
           </div>
           <div>
@@ -75,8 +46,4 @@ export class Card extends Component {
       </div>
     )
   }
-
 }
-
-
-export default connect()(Card)

@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getCar } from 'actions/carActions'
-import ProgressBar from 'components/ProgressBar/ProgressBar'
+import { ProgressBar } from 'components/ProgressBar/ProgressBar'
 import { IconDropdown } from 'components/IconDropdown/IconDropdown'
 import Toggler from 'components/Toggler/Toggler'
 import Carousel from 'components/Carousel/Carousel'
-import Ionicon from 'react-ionicons'
+import Favorite from 'components/Favorite/Favorite'
 import Placeholder from 'images/placeholder.svg'
 import classes from 'styles/CarDetail.module.css'
 
@@ -26,7 +26,6 @@ class CarDetail extends Component {
       monthlyFee: props.financials.monthly_payment_cents/100,
       startFee: props.financials.start_fee_cents/100,
       taxed: false,
-      favorited: window.localStorage.getItem('favorites') !== "[]" ? JSON.parse(window.localStorage.getItem('favorites')).includes(props.match.params.carID) : false
     }
   }
 
@@ -45,31 +44,6 @@ class CarDetail extends Component {
         monthlyFee: nextProps.financials.monthly_payment_cents/100,
         startFee: nextProps.financials.start_fee_cents/100
       })
-    }
-  }
-
-  toggleFavorite = (event, id) => {
-    event.preventDefault()
-    this.setState({
-      favorited: !this.state.favorited
-    })
-    if (window.localStorage.getItem('favorites')) {
-      let retrieved = JSON.parse(window.localStorage.getItem('favorites'))
-      if (retrieved.includes(id)) {
-        let removed = retrieved.filter(VIN => VIN !== id)
-        window.localStorage.clear()
-        window.localStorage.setItem('favorites', JSON.stringify(removed))
-        return
-      } else {
-        retrieved.push(id)
-        window.localStorage.setItem('favorites', JSON.stringify(retrieved))
-        return
-      }
-    } else {
-      let favorites = []
-      favorites.push(id)
-      window.localStorage.setItem('favorites', JSON.stringify(favorites))
-      return
     }
   }
 
@@ -96,7 +70,7 @@ class CarDetail extends Component {
   render() {
 
     const { match, car, loading, error, images } = this.props
-    const { featuresOpen, monthlyFee, startFee, mileage, taxed, favorited } = this.state
+    const { featuresOpen, monthlyFee, startFee, mileage, taxed } = this.state
 
     return (
 
@@ -107,7 +81,7 @@ class CarDetail extends Component {
           { loading ?
               <img src={Placeholder} alt='car' className={classes.placeholderImage}/>
             :
-              <Carousel images={images} error={error} />
+              <Carousel images={images} error={error} loading={loading} />
           }
 
           <div className='panel'>
@@ -118,7 +92,7 @@ class CarDetail extends Component {
               <Fragment>
                 <div className='row' style={{ justifyContent: 'space-between' }}>
                   <div>{car.model_year} {car.make}</div>
-                  <div onClick={(event) => this.toggleFavorite(event, match.params.carID)}><Ionicon icon={favorited ? 'md-heart' : 'md-heart-outline'} fontSize="30px" color={favorited ? 'red' : 'gray'} /></div>
+                  <Favorite id={match.params.carID}/>
                 </div>
                 <h3>{car.model} {car.trim}</h3>
                 <div className='row col-2-grid'>

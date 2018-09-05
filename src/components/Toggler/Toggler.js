@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classes from './Toggler.module.css'
 
-export default class toggle extends Component {
+export default class Toggler extends Component {
 
   constructor(props) {
     super(props)

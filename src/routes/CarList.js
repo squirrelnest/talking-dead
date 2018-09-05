@@ -5,7 +5,7 @@ import { getCars } from 'actions/carsActions'
 import classes from 'styles/CarList.module.css'
 import Card from 'components/Card/Card'
 import { PageHeader } from 'components/PageHeader/PageHeader'
-import ProgressBar from 'components/ProgressBar/ProgressBar'
+import { ProgressBar } from 'components/ProgressBar/ProgressBar'
 
 
 

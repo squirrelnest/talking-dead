@@ -17,6 +17,7 @@ export default function carReducer(state = initialState, action) {
       }
 
     case GET_CAR_SUCCESS:
+      // FILTER IMAGE URLS BY RESPONSE STATUS
       // const filteredImages = () => {
       //   let filteredArray = []
       //   action.payload.data.vehicle.image_location_list.map( url =>
@@ -29,11 +30,9 @@ export default function carReducer(state = initialState, action) {
       //       }
       //     })
       //     .then(response => {
-      //       console.log(response.status)
-      //       filteredArray.push(url)
+      //       if (response.status === 200) filteredArray.push(url)
       //   })
       // )
-      //   console.log(filteredArray)
       //   return filteredArray
       // }
       return {

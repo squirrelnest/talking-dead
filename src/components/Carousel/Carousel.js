@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import classes from './Carousel.module.css'
-import { IconDropdown } from 'components/IconDropdown/IconDropdown'
 import Ionicon from 'react-ionicons'
 import Placeholder from 'images/placeholder.svg'
-import { connect } from 'react-redux'
 
-export class Carousel extends Component {
+export default class Carousel extends Component {
 
   constructor(props) {
     super(props)
@@ -15,45 +13,29 @@ export class Carousel extends Component {
   }
 
   previousSlide = (props) => {
-    // const lastIndex = props.images.length - 1
-    // const { currentSlide } = this.state
-    // const shouldResetIndex = currentSlide === 0
-    // const index = shouldResetIndex ? lastIndex : currentSlide - 1
-
     this.setState({
-      // currentSlide: index
-      currentSlide: this.state.currentSlide - 1
+      currentSlide: this.state.currentSlide !== 0 ? this.state.currentSlide - 1 : this.props.images.length - 1
     })
   }
 
   nextSlide = (props) => {
-    // const lastIndex = props.images.length - 1
-    // const { currentSlide } = this.state
-    // const shouldResetIndex = currentSlide === lastIndex;
-    // const index = shouldResetIndex ? 0 : currentSlide + 1
-
     this.setState({
-      // currentSlide: index
-      currentSlide: this.state.currentSlide + 1
+      currentSlide: this.state.currentSlide !== this.props.images.length - 1 ? this.state.currentSlide + 1 : 0
     })
-    console.log(this.state.currentSlide)
   }
 
   render () {
 
-    const { images, className, loading } = this.props
-    const { currentSlide } = this.state
+    const { images, error } = this.props
 
     return (
-        <div className={classes.carousel}>
-          <div className={classes.arrowContainer}>
-            <div onClick={this.previousSlide} className={classes.arrow}><Ionicon icon='ios-arrow-back' fontSize='36px' color='grey' /></div>
-            <div onClick={this.nextSlide} className={classes.arrow}><Ionicon icon='ios-arrow-forward' fontSize='36px' color='grey' /></div>
-          </div>
-          <div className={classes.imageContainer}><img src={ images[this.state.currentSlide] } className={classes.carouselImage} /></div>
+      <div className={classes.carousel}>
+        <div className={classes.arrowContainer}>
+          <div onClick={this.previousSlide} className={classes.arrow}><Ionicon icon='ios-arrow-back' fontSize='36px' color='grey' /></div>
+          <div onClick={this.nextSlide} className={classes.arrow}><Ionicon icon='ios-arrow-forward' fontSize='36px' color='grey' /></div>
         </div>
+        <div className={classes.imageContainer}><img src={error ? Placeholder : images[this.state.currentSlide]} className={classes.carouselImage} alt='car detail'/></div>
+      </div>
     )
   }
 }
-
-export default connect()(Carousel)

@@ -104,23 +104,22 @@ class CarDetail extends Component {
         { error !== null && <div className='error'>{error}</div> }
         <div className={classes.detailsGrid}>
 
-          { !loading ?
+          { loading ?
               <img src={Placeholder} alt='car' className={classes.placeholderImage}/>
             :
-              <Carousel images={images} />
+              <Carousel images={images} error={error} />
           }
 
           <div className='panel'>
 
             { loading ?
-
               <ProgressBar />
-
             :
-
               <Fragment>
-                <div onClick={(event) => this.toggleFavorite(event, match.params.carID)}><Ionicon icon={favorited ? 'md-heart' : 'md-heart-outline'} fontSize="30px" color={favorited ? 'red' : 'gray'} /></div>
-                <div>{car.model_year} {car.make}</div>
+                <div className='row' style={{ justifyContent: 'space-between' }}>
+                  <div>{car.model_year} {car.make}</div>
+                  <div onClick={(event) => this.toggleFavorite(event, match.params.carID)}><Ionicon icon={favorited ? 'md-heart' : 'md-heart-outline'} fontSize="30px" color={favorited ? 'red' : 'gray'} /></div>
+                </div>
                 <h3>{car.model} {car.trim}</h3>
                 <div className='row col-2-grid'>
                   <div>{car.mileage || 0} Mi.</div>
@@ -155,7 +154,6 @@ class CarDetail extends Component {
                   Price With{!taxed && 'out'} Tax <Toggler onChange={this.toggleTax}/>
                 </div>
               </Fragment>
-
             }
 
           </div>

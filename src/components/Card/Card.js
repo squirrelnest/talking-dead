@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import classes from './Card.module.css'
-import { IconDropdown } from 'components/IconDropdown/IconDropdown'
 import Ionicon from 'react-ionicons'
 import { connect } from 'react-redux'
 
@@ -9,7 +8,6 @@ export class Card extends Component {
   constructor(props) {
     super(props)
     this.state={
-      isOpen: false,
       favorited: window.localStorage.getItem('favorites') ? JSON.parse(window.localStorage.getItem('favorites')).includes(props.id) : false
     }
   }
@@ -50,7 +48,7 @@ export class Card extends Component {
   render() {
 
     const { id, car, children, footer, clickHandler } = this.props
-    const { isOpen, favorited } = this.state
+    const { favorited } = this.state
 
     return (
       <div className={classes.card} onClick={(event) => clickHandler(event, id)}>

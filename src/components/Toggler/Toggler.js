@@ -1,28 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 import classes from './Toggler.module.css'
 
-export default class Toggler extends Component {
+export const Toggler = (props) => {
 
-  constructor(props) {
-    super(props)
-    this.state={
-    }
-  }
+  const { name, value, onChange } = props
 
-  render() {
-
-    const { name, value, onChange } = this.props
-
-    return (
-      <label className={classes.switch}>
-        <input
-          type="checkbox"
-          name={name}
-          value={value}
-          onChange={onChange} />
-        <div className={classes.slider}></div>
-      </label>
-    )
-  }
+  return (
+    <label className={classes.switch}>
+      <input
+        type="checkbox"
+        name={name}
+        value={value}
+        onChange={onChange} />
+      <div className={classes.slider}></div>
+    </label>
+  )
 
 }

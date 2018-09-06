@@ -59,8 +59,7 @@ class CarList extends Component {
     const { cars, page_count, error, loading } = this.props
     const { headerLabel, page_number } = this.state
 
-    // const cards = Object.values(cars).map( car =>
-    const cards = cars.map( car =>  
+    const cards = cars.map( car =>
       <Card
         key={Math.random()}
         id={car.id}
@@ -75,19 +74,17 @@ class CarList extends Component {
         <PageHeader headerLabel={headerLabel}/>
         <div className={classes.cardsContainer}>{cards}</div>
         { loading && <ProgressBar /> }
-        { page_number === page_count && <div className='center container'><h5>End of list</h5></div> }
+        { page_number === page_count && <div className='center container'><h5 style={{ paddingBottom: '20px' }}>End of list</h5></div> }
       </div>
     )
 
   }
-
 }
 
 // CONNECT TO REDUX STORE TO ACCESS GLOBAL STATE AND/OR DISPATCH THROUGH PROPS
 
 const mapStateToProps = (state) => {
   return {
-    // cars: state.cars.cars || {},
     cars: state.cars.cars || [],
     loading: state.cars.loading,
     qualifying_count: state.cars.qualifying_count,

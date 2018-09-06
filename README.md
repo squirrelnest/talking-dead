@@ -31,17 +31,23 @@ React web app for merchandising automobiles
   - [ ] Unit tests
   - [ ] Integration tests
 
-## Tradeoffs
+## Technical Tradeoffs
 
 1) Cars data is stored as an array, rather than object, mainly so I can show off the infinite scrolling/pagination feature.
 
-  Rationale: Because the API sends data with non-unique keys, merging new data with the old data produces no increase in the number of elements to display in the car listing, obviating the need for pagination. Furthermore, the use case for the car listing is to show cars - not update or delete records in the database. Hence, it is okay in this case to use an array. However, if the API had more unique records or our use case changed to allow users to modify records, I would prefer to use an object containing car objects keyed to their VIN (or other unique identifier).
+  Rationale: Because the API sends data with non-unique keys, merging new data with the old data produces no increase in the number of elements to display in the car listing, obviating the need for pagination. Furthermore, the use case for the car listing is to show cars - not update or delete cars. Hence, it is okay in this case to use an array. However, if the API had more unique records or our use case changed to require finding cars by ID, I would prefer to use an object containing car objects keyed to their VIN (or other unique identifier).
 
-  Downsides: Arrays require iteration to find the desired element, which is slower and less performant with large amounts of data than selecting an element from an object by its key.
+  Downsides: Duplicate records are shown. Arrays require iteration to find the desired element, which is slower and less performant with large amounts of data than selecting an element from an object by its key.
 
   Upsides: I'm able to demo the infinite scrolling/pagination feature. And fetching more cars is faster because I don't have to rename the keys to make sure they're all unique.
 
-2) Storing favorites in localStorage instead of Redux store
+2) Storing favorites in localStorage rather than server-side
+
+  Rationale: I don't have permissions to POST the favorites to the server-side database, which would be the best place to save user data that needs to persist across sessions, pages, and devices. I could save the favorites in global state, but the Redux store loses favorites on refresh unless I save global state to localStorage and rehydrate the app with data from localStorage. Either way, I'd have to store favorites in localStorage. If storing favorites in the backend were possible, I would abstract storage from business logic and denormalize favorites data into the cars data. This would mean adding 'favorite' and 'unfavorite' actions that update the server-side database, adding a 'favorited' key to the car objects and optionally serializing that key into the Redux store.
+
+  Downsides: Favorites are not shared across the user's other devices because they are saved on the local machine.
+
+  Upside: Favorites are synchronized across the Car Listing and Car Detail pages. Separation of concerns - the redux side of the app is concerned solely with managing global state and getting data to and from external sources.
 
 ## Risks / Todos
 
@@ -64,6 +70,7 @@ UX
 
 Build
   - might need to eject CRA (create-react-app) if we need custom build configuration
+  - API endpoints should be moved to a config file as it's likely the hostname differs based on environment
 
 Backend
   - should filter out broken image URLS before sending data out to frontend

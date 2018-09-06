@@ -23,7 +23,6 @@ export function getCarFailure(error) {
   return { type: GET_CAR_FAILURE, payload: error }
 }
 
-
 /* API CALLS */
 
 export function getCar(carID) {

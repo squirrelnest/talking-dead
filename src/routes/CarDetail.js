@@ -10,7 +10,7 @@ import Placeholder from 'images/placeholder.svg'
 import classes from 'styles/CarDetail.module.css'
 
 function changeFees(nextState, nextProps) {
-  return { // THIS IS A PLACEHOLDER FOR THE ACTUAL PRICING FORMULA, WHICH IS PROBABLY NOT LINEAR
+  return { // THIS IS A PLACEHOLDER FOR THE ACTUAL PRICING FORMULA, WHICH IS LIKELY NOT LINEAR
     monthlyFee: Math.round( (nextProps.financials.monthly_payment_cents/100) * ((nextProps.car.mileage) / (nextState.mileage)) * (nextState.taxed ? 1.1 : 1) ),
     startFee: Math.round( (nextProps.financials.start_fee_cents/100) * ((nextProps.car.mileage) / (nextState.mileage)) * (nextState.taxed ? 1.1 : 1) )
   }

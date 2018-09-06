@@ -21,12 +21,6 @@ html, body {
   position: absolute;
 }
 
-input:-webkit-autofill {
-  background-color: #ccc;
-  background-image: none;
-  color: rgb(0, 0, 0);
-}
-
 /* COLORS *******************/
 
 .orange {
@@ -100,6 +94,12 @@ h5 {
 }
 
 /* INPUTS *******************/
+
+input:-webkit-autofill {
+  background-color: #ccc;
+  background-image: none;
+  color: rgb(0, 0, 0);
+}
 
 input[type='checkbox'] {
   display: inline-block;

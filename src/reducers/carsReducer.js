@@ -5,6 +5,7 @@ import {
 } from 'actions/carsActions';
 
 const initialState = {
+  // cars: {}
   cars: []
 }
 
@@ -18,11 +19,21 @@ export default function carsReducer(state = initialState, action) {
       }
 
     case GET_CARS_SUCCESS:
+      // const fetchedCars = () => {
+      //   let newObj = {}
+      //   let oldObj = action.payload.data.vehicles
+      //   Object.keys(oldObj).forEach(key => {
+      //     let value = oldObj[key]
+      //     newObj[oldObj[key]['id']] = value
+      //   })
+      //   return newObj
+      // }
       return {
         ...state,
         loading: false,
         page_count: action.payload.data.page_count,
         qualifying_count: action.payload.data.qualifying_count,
+        // cars: {...state.cars, ...fetchedCars()},
         cars: state.cars.concat(action.payload.data.vehicles)
       }
 

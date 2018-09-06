@@ -10,13 +10,6 @@ export default class Favorite extends Component {
     }
   }
 
-  toggleOpen = (event) => {
-    event.preventDefault()
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
-  }
-
   // TODO: abstract storage from business logic
   // Because toggleFavorite modifies more than local state,
   // we may consider moving this into an action (or two? as in, 'favorite' and 'unfavorite' functions)

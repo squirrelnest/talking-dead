@@ -6,6 +6,8 @@ import { checkHTTPStatus } from 'actions/_utils'
 export const GET_CAR_PENDING = 'GET_CAR_PENDING'
 export const GET_CAR_SUCCESS = 'GET_CAR_SUCCESS'
 export const GET_CAR_FAILURE = 'GET_CAR_FAILURE'
+export const FAVORITE_CAR = 'FAVORITE_CAR'
+export const UNFAVORITE_CAR = 'UNFAVORITE_CAR'
 
 /* ACTION CREATORS */
 

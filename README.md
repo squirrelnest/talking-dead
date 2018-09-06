@@ -31,6 +31,44 @@ React web app for merchandising automobiles
   - [ ] Unit tests
   - [ ] Integration tests
 
+## Tradeoffs
+
+1) Cars data is stored as an array, rather than object, mainly so I can show off the infinite scrolling/pagination feature.
+
+  Rationale: Because the API sends data with non-unique keys, merging new data with the old data produces no increase in the number of elements to display in the car listing, obviating the need for pagination. Furthermore, the use case for the car listing is to show cars - not update or delete records in the database. Hence, it is okay in this case to use an array. However, if the API had more unique records or our use case changed to allow users to modify records, I would prefer to use an object containing car objects keyed to their VIN (or other unique identifier).
+
+  Downsides: Arrays require iteration to find the desired element, which is slower and less performant with large amounts of data than selecting an element from an object by its key.
+
+  Upsides: I'm able to demo the infinite scrolling/pagination feature. And fetching more cars is faster because I don't have to rename the keys to make sure they're all unique.
+
+2) Storing favorites in localStorage instead of Redux store
+
+## Risks / Todos
+
+Scalability
+  - may need sass in the future if visual design choices change frequently
+  - favorites are not shared across the user's other devices
+
+Security
+  - no user authentication
+
+Accuracy
+  - will need to replace placeholder formula with actual pricing formula based on mileage
+
+Test Coverage
+  - only partial coverage was given due to time constraints
+
+UX
+  - have not checked for aria compliance
+  - have not checked for cross-browser compatibility
+
+Build
+  - might need to eject CRA (create-react-app) if we need custom build configuration
+
+Backend
+  - should filter out broken image URLS before sending data out to frontend
+  - VINS should be unique - don't send out duplicate data
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -61,25 +99,3 @@ The build is minified and the filenames include the hashes.<br>
 ### `npm run eject`
 
 If you aren’t satisfied with the create-react-app build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project. This is a one-way operation that cannot be undone.
-
-## Risks / Todos
-
-Scalability
-  - may need sass in the future if visual design choices change frequently
-  - favorites are not shared across the user's other devices
-
-Security
-  - no user authentication
-
-Accuracy
-  - will need to replace placeholder formula with actual pricing formula based on mileage
-
-Test Coverage
-  - only partial coverage was given due to time constraints
-
-UX
-  - have not checked for aria compliance
-  - have not checked for cross-browser compatibility
-
-Build
-  - might need to eject CRA (create-react-app) if we need custom build configuration

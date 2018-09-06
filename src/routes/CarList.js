@@ -59,7 +59,8 @@ class CarList extends Component {
     const { cars, page_count, error, loading } = this.props
     const { headerLabel, page_number } = this.state
 
-    const cards = cars.map( car =>
+    // const cards = Object.values(cars).map( car =>
+    const cards = cars.map( car =>  
       <Card
         key={Math.random()}
         id={car.id}
@@ -86,6 +87,7 @@ class CarList extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    // cars: state.cars.cars || {},
     cars: state.cars.cars || [],
     loading: state.cars.loading,
     qualifying_count: state.cars.qualifying_count,

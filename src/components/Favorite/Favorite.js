@@ -17,6 +17,13 @@ export default class Favorite extends Component {
     })
   }
 
+  // TODO: abstract storage from business logic
+  // Because toggleFavorite modifies more than local state,
+  // we may consider moving this into an action (or two? as in, 'favorite' and 'unfavorite' functions)
+  // and denormalize favorite data into the car data.
+  // This would mean adding a 'favorited' key to the parent component objects
+  // and optionally serializing that key into localStorage or Redux store as well
+
   toggleFavorite = (event, id) => {
     event.preventDefault()
     event.stopPropagation()

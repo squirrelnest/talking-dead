@@ -65,7 +65,7 @@ class CarList extends Component {
         id={car.id}
         car={car}
         clickHandler={this.handleRedirect}
-        footer={`${car.model_year} ${car.make} ${car.model} ${car.trim}`} />
+        footer={`${car.model_year} ${car.make} ${car.model} ${car.trim}`}/>
     )
 
     return (

@@ -42,8 +42,8 @@ html, body {
 /* TEXT *******************/
 
 p, span {
-  font-size: 1em ;
-  font-weight: 100;
+  font-family: Roboto,Trebuchet MS,Arial,Helvetica,sans-serif !important;
+  font-size: 1em;
   hyphens: none;
 }
 

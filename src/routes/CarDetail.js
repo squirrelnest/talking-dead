@@ -25,7 +25,7 @@ class CarDetail extends Component {
       mileage: props.car.mileage,
       monthlyFee: props.financials.monthly_payment_cents/100,
       startFee: props.financials.start_fee_cents/100,
-      taxed: false,
+      taxed: false
     }
   }
 
@@ -67,6 +67,10 @@ class CarDetail extends Component {
     this.setState(changeFees)
   }
 
+  goHome = () => {
+    this.props.history.push('/')
+  }
+
   render() {
 
     const { match, car, loading, error, images } = this.props
@@ -105,10 +109,10 @@ class CarDetail extends Component {
                 </div>
                 <div className='border-top'>
                   <div className='col-2-grid'>
-                    <div><label>MONTHLY PYMT.</label>${monthlyFee || 0}</div>
-                    <div><label>START PYMT.</label>${startFee || 0}</div>
+                    <div data-test='monthly-fee'><label>MONTHLY PYMT.</label>$<span>{monthlyFee || 0}</span></div>
+                    <div data-test='start-fee'><label>START PYMT.</label>$<span>{startFee || 0}</span></div>
                   </div>
-                  <label>MILEAGE: {mileage}</label>
+                  <label data-test='mileage'>MILEAGE: {mileage}</label>
                   <div className='row space-between' style={{ paddingBottom: '20px' }}>
                     <span>1</span>
                     <input
@@ -120,7 +124,8 @@ class CarDetail extends Component {
                       step='10'
                       value={mileage}
                       onChange={(event) => this.handleSlider(event)}
-                      style={{ margin: '10px' }}/>
+                      style={{ margin: '10px' }}
+                      data-test='slider'/>
                     <span>100,000</span>
                   </div>
                 </div>

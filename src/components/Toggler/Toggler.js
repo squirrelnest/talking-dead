@@ -6,12 +6,12 @@ export const Toggler = (props) => {
   const { name, value, onChange } = props
 
   return (
-    <label className={classes.switch}>
+    <label className={classes.switch} data-test='toggler'>
       <input
         type="checkbox"
         name={name}
         value={value}
-        onChange={onChange} />
+        onChange={onChange}/>
       <div className={classes.slider}></div>
     </label>
   )

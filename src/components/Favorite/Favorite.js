@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import classes from './Favorite.module.css'
 import Ionicon from 'react-ionicons'
 
 export default class Favorite extends Component {
@@ -42,7 +43,7 @@ export default class Favorite extends Component {
     const { favorited } = this.state
 
     return (
-      <div onClick={(event) => this.toggleFavorite(event, id)}>
+      <div onClick={(event) => this.toggleFavorite(event, id)} className={classes.favorite} data-test='favorite'>
         <Ionicon
           icon={favorited ? 'md-heart' : 'md-heart-outline'}
           fontSize="30px"

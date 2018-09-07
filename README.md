@@ -26,7 +26,6 @@ React web app for merchandising automobiles
   - [x] Progress Loading Indicator
   - [x] Hover States
 - [x] Responsive Design for optimal viewing on desktop or mobile
-- [ ] Logging with Google Analytics
 - [ ] Automated Testing
   - [ ] Unit tests
   - [ ] Integration tests
@@ -75,6 +74,9 @@ Build
 Backend
   - should filter out broken image URLS before sending data out to frontend
   - VINS should be unique - don't send out duplicate data
+
+Logging
+  - Add Google Analytics logging to monitor errors and traffic
 
 ## Available Scripts
 

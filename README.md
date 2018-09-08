@@ -32,7 +32,7 @@ React web app for merchandising automobiles
 
 ## Technical Tradeoffs
 
-1) Cars data is stored as an array, rather than object, mainly so I can show off the infinite scrolling/pagination feature.
+##### 1) Cars data is stored as an array, rather than object, mainly so I can show off the infinite scrolling/pagination feature.
 
   - Rationale: Because the API sends data with non-unique keys, merging new data with the old data produces no increase in the number of elements to display in the car listing, obviating the need for pagination. Furthermore, the use case for the car listing is to show cars - not update or delete cars. Hence, it is okay in this case to use an array. However, if the API had more unique records or our use case changed to require finding cars by ID, I would prefer to use an object containing car objects keyed to their VIN (or other unique identifier).
 
@@ -40,7 +40,7 @@ React web app for merchandising automobiles
 
   - Upsides: I'm able to demo the infinite scrolling/pagination feature. And fetching more cars is faster because I don't have to rename the keys to make sure they're all unique.
 
-2) Storing favorites in localStorage rather than server-side
+##### 2) Storing favorites in localStorage rather than server-side
 
   - Rationale: I don't have permissions to POST the favorites to the server-side database, which would be the best place to save user data that needs to persist across sessions, pages, and devices. I could save the favorites in global state, but the Redux store loses favorites on refresh unless I save global state to localStorage and rehydrate the app with data from localStorage. Either way, I'd have to store favorites in localStorage. If storing favorites in the backend were possible, I would abstract storage from business logic and denormalize favorites data into the cars data. This would mean adding 'favorite' and 'unfavorite' actions that update the server-side database, adding a 'favorited' key to the car objects and optionally serializing that key into the Redux store.
 
@@ -48,7 +48,7 @@ React web app for merchandising automobiles
 
   - Upside: Favorites are synchronized across the Car Listing and Car Detail pages. Separation of concerns - the redux side of the app is concerned solely with managing global state and getting data to and from external sources.
 
-3) Using Cypress for end-to-end testing
+##### 3) Using Cypress for end-to-end testing
 
   - Rationale: I am already familiar with Cypress syntax and format as it uses Mocha and Chai.
 

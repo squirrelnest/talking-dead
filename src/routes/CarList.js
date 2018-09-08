@@ -7,7 +7,7 @@ import { Card } from 'components/Card/Card'
 import { PageHeader } from 'components/PageHeader/PageHeader'
 import { ProgressBar } from 'components/ProgressBar/ProgressBar'
 
-class CarList extends Component {
+export class CarList extends Component {
 
   constructor(props) {
     super(props)
@@ -74,7 +74,7 @@ class CarList extends Component {
         <PageHeader headerLabel={headerLabel}/>
         <div className={classes.cardsContainer}>{cards}</div>
         { loading && <ProgressBar /> }
-        { page_number === page_count && <div className='center container'><h5 style={{ paddingBottom: '20px' }}>End of list</h5></div> }
+        { page_number === page_count && <div className='center container'><h5 style={{ paddingBottom: '20px' }} data-test='list-end'>End of list</h5></div> }
       </div>
     )
 

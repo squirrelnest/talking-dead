@@ -26,9 +26,9 @@ React web app for merchandising automobiles
   - [x] Progress Loading Indicator
   - [x] Hover States
 - [x] Responsive Design for optimal viewing on desktop or mobile
-- [ ] Automated Testing
-  - [ ] Unit tests
-  - [ ] Integration tests
+- [x] Automated Testing
+  - [x] Unit tests
+  - [x] Integration tests
 
 ## Technical Tradeoffs
 
@@ -48,7 +48,19 @@ React web app for merchandising automobiles
 
   Upside: Favorites are synchronized across the Car Listing and Car Detail pages. Separation of concerns - the redux side of the app is concerned solely with managing global state and getting data to and from external sources.
 
-## Risks / Todos
+3) Using Cypress for end-to-end testing
+
+  Rationale: I am already familiar with Cypress syntax and format as it uses Mocha and Chai.
+
+  Downside: Does not support testing for non-Chromium browsers. Does not support fetch.
+
+  Upside: Faster setup and shallower learning curve than Selenium
+
+## Known Issues, Risks, Todos
+
+Test Coverage
+  - only partial coverage was given due to time constraints
+  - integration test for infinite scroller passes when test runner is in interactive mode but fails in headless mode
 
 Scalability
   - may need sass in the future if visual design choices change frequently
@@ -59,9 +71,6 @@ Security
 
 Accuracy
   - will need to replace placeholder formula with actual pricing formula based on mileage
-
-Test Coverage
-  - only partial coverage was given due to time constraints
 
 UX
   - have not checked for aria compliance
@@ -95,9 +104,13 @@ Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
 
 Launches the unit test runner.
 
+### `npx cypress open`
+
+Launches the integration test runner in interactive mode.
+
 ### `npm test:cypress`
 
-Launches the integration test runner.
+Launches the integration test runner in headless mode.
 
 ### `npm run build`
 

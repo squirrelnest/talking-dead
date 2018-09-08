@@ -20,10 +20,9 @@ export function getCarsFailure(error) {
   return { type: GET_CARS_SUCCESS, payload: error }
 }
 
-
 /* API CALLS */
 
-export function getCars(page_number) {
+export function getCars(page_number=0) {
   return (dispatch) => {
     dispatch(getCarsPending());
     return fetch(`https://private-4e19e-interviewapi3.apiary-mock.com/vehicles?page=${page_number}`, {

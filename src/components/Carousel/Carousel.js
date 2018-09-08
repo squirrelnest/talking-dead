@@ -31,12 +31,12 @@ export default class Carousel extends Component {
     return (
       <div className={classes.carousel}>
         <div className={classes.arrowContainer}>
-          <div onClick={this.previousSlide} className={classes.arrow}><Ionicon icon='ios-arrow-back' fontSize='36px' color='grey' /></div>
-          <div onClick={this.nextSlide} className={classes.arrow}><Ionicon icon='ios-arrow-forward' fontSize='36px' color='grey' /></div>
+          <div onClick={this.previousSlide} className={classes.arrow} data-test='back-arrow'><Ionicon icon='ios-arrow-back' fontSize='36px' color='grey' /></div>
+          <div onClick={this.nextSlide} className={classes.arrow} data-test='next-arrow'><Ionicon icon='ios-arrow-forward' fontSize='36px' color='grey' /></div>
         </div>
         <div className={classes.imageContainer}>
           <img
-            src={error || loading ? Placeholder : images[this.state.currentSlide]}
+            src={ error || loading ? Placeholder : images[this.state.currentSlide]}
             className={classes.carouselImage}
             alt='car detail'
             onError={(event)=>event.target.setAttribute('src', Placeholder)}/>

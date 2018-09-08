@@ -18,7 +18,6 @@ lib-cov
 node_modules
 
 # Build artifacts
-public
 .idea
 /build
 build

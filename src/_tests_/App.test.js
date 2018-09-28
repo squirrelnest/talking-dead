@@ -10,7 +10,7 @@ import App from '../App'
 
 configure({ adapter: new Adapter() })
 
-// initialize moxck redux STORE
+// initialize mock redux STORE
 
 const middlewares = [thunk] // add your middlewares like `redux-thunk`
 const mockStore = configureStore(middlewares)

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getCar } from 'actions/carActions'
 import { ProgressBar } from 'components/ProgressBar/ProgressBar'
@@ -67,10 +68,6 @@ class CarDetail extends Component {
     this.setState(changeFees)
   }
 
-  goHome = () => {
-    this.props.history.push('/')
-  }
-
   render() {
 
     const { match, car, loading, error, images } = this.props
@@ -95,8 +92,8 @@ class CarDetail extends Component {
             :
               <Fragment>
                 <div className='row' style={{ justifyContent: 'space-between' }}>
-                  <div>{car.model_year} {car.make}</div>
-                  <Favorite id={match.params.carID}/>
+                  <div><Link to='/'>Home</Link> :: {car.model_year} {car.make}</div>
+                  <div><Favorite id={match.params.carID}/></div>
                 </div>
                 <h3>{car.model} {car.trim}</h3>
                 <div className='row col-2-grid'>

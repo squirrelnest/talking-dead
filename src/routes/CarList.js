@@ -23,6 +23,7 @@ export class CarList extends Component {
   }
 
   componentDidMount() {
+    // false sets event handler for the bubbling phase (parent element's event handler fires last)
     window.addEventListener('scroll', this.handleScroll, false)
   }
 
@@ -56,7 +57,7 @@ export class CarList extends Component {
 
   render() {
 
-    const { cars, page_count, error, loading } = this.props
+    const { cars, page_count, error, loading, handleRedirect } = this.props
     const { headerLabel, page_number } = this.state
 
     const cards = cars.map( car =>

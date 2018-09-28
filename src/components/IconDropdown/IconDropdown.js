@@ -10,7 +10,7 @@ export const IconDropdown = (props) => {
     <div id='IconDropdown' className='IconDropdown'>
       <div className={['IconDropdown', 'row'].join(' ')}>
         { label ? <div className='row'>{label}</div> : null }
-        <div className='IconDropdown' style={{ position: 'relative'}}>
+        <div className='IconDropdown' style={{position: 'relative'}}>
           <div className='IconDropdown' style={{backgroundColor: 'transparent', zIndex: 2, width: '24px', height: '24px', top: 0, position: 'absolute'}}></div>
           <Ionicon
             id='icondropdown-arrow'

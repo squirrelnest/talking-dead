@@ -7,8 +7,9 @@ import Favorite from 'components/Favorite/Favorite'
 
 // Also, arrow function syntax creates a different callback each time Card renders.
 // Performance may be affected if this component is frequently re-rendered.
+// But, no need to prematurely optimize, right?
 
-// On the other hand, functional components only work with arrow function callbacks
+// Besides, functional components only work with arrow function callbacks
 // ...and use less memory as they don't need to be instantiated on each render
 
 export const Card = (props) => {

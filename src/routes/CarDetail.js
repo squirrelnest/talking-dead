@@ -111,7 +111,7 @@ class CarDetail extends Component {
                   </div>
                   <label data-test='mileage'>MILEAGE: {mileage}</label>
                   <div className='row space-between' style={{ paddingBottom: '20px' }}>
-                    <span>1</span>
+                    <div>1</div>
                     <input
                       name='mileageSlider'
                       type='range'
@@ -121,9 +121,8 @@ class CarDetail extends Component {
                       step='10'
                       value={mileage}
                       onChange={(event) => this.handleSlider(event)}
-                      style={{ margin: '10px' }}
                       data-test='slider'/>
-                    <span>100,000</span>
+                    <div>100,000</div>
                   </div>
                 </div>
                 <div className='row border-top space-between' style={{ paddingTop: '20px' }}>

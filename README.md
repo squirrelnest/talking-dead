@@ -1,4 +1,4 @@
-# infinite-messages
+# talking-dead
 
 Mobile message viewer
 

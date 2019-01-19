@@ -1,36 +1,46 @@
 import {
-  GET_CARS_PENDING,
-  GET_CARS_SUCCESS,
-  GET_CARS_FAILURE
-} from 'actions/carsActions';
+  GET_CARDS_PENDING,
+  GET_CARDS_SUCCESS,
+  GET_CARDS_FAILURE,
+  REMOVE_CARD
+} from 'actions/cardsActions';
 
 const initialState = {
-  cars: []
+  cards: []
 }
 
-export default function carsReducer(state = initialState, action) {
+export default function cardsReducer(state = initialState, action) {
   switch (action.type) {
 
-    case GET_CARS_PENDING:
+    case GET_CARDS_PENDING:
       return {
         ...state,
         loading: true
       }
 
-    case GET_CARS_SUCCESS:
+    case GET_CARDS_SUCCESS:
       return {
         ...state,
         loading: false,
-        page_count: action.payload.data.page_count,
-        qualifying_count: action.payload.data.qualifying_count,
-        cars: state.cars.concat(action.payload.data.vehicles)
+        item_count: action.payload.count,
+        pageToken: action.payload.pageToken,
+        cards: state.cards.concat(action.payload.messages)
       }
 
-    case GET_CARS_FAILURE:
+    case GET_CARDS_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload.warnings
+      }
+
+    case REMOVE_CARD:
+      return {
+        ...state,
+        loading: false,
+        item_count: state.cards.count,
+        pageToken: state.cards.pageToken,
+        cards: state.cards.filter(card => card.id !== action.payload)
       }
 
     default:

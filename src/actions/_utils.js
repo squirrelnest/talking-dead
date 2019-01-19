@@ -1,4 +1,16 @@
-/* HELPER FUNCTIONS USED IN MULTIPLE ACTIONS AND REDUCERS */
+/* HELPER FUNCTIONS */
+
+export function millisecondsToTime(ms) {
+  let minutes = Math.floor((ms / (60 * 1000)) % 60);
+  let hours = Math.floor(minutes/60);
+  if (minutes < 2) {
+    return minutes + " minute ago"
+  } else if (minutes < 60) {
+    return minutes + " minutes ago"
+  } else {
+    return hours + " hours ago"
+  }
+}
 
 export function checkHTTPStatus(response) {
   if (response.ok) {

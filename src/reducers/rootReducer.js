@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux'
-import carReducer from './carReducer'
-import carsReducer from './carsReducer'
+import cardsReducer from './carsReducer'
 
 const appReducer = combineReducers({
-  car: carReducer,
-  cars: carsReducer
+  cards: cardsReducer
 })
 
 const rootReducer = (state, action) => {

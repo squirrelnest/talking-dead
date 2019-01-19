@@ -6,17 +6,10 @@ let frontendHost
 const hostname = window && window.location && window.location.hostname;
 
 if (hostname === 'localhost') {
-  backendHost = 'https://interviewapi3.apiblueprint.org'
+  backendHost = 'http://message-list.appspot.com'
   frontendHost = 'http://localhost:4000'
-
-} else if (hostname === 'dev.fair.com') {
-  backendHost = 'https://interviewapi3.apiblueprint.org'
-
-} else if (hostname === 'test.fair.com') {
-  backendHost = 'https://interviewapi3.apiblueprint.org'
-
-} else if (hostname === 'fair.com') {
-  backendHost = 'https://interviewapi3.apiblueprint.org'
+} else if (hostname === 'message-list.appspot.com') {
+  backendHost = 'http://message-list.appspot.com'
 }
 
 export const API_HOST = `${backendHost}`

@@ -1,6 +1,6 @@
 {
-  "short_name": "Autopia",
-  "name": "Autopia",
+  "short_name": "Messages",
+  "name": "Messages",
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",

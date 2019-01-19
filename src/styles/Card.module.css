@@ -1,0 +1,71 @@
+.card {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 6px 0px rgba(0, 0, 0, 0.2);
+  display: block;
+  height: fit-content;
+  background-color: white;
+  padding: 20px;
+}
+
+.card:hover .dismissButton {
+  visibility: visible;
+}
+
+.dismissButton {
+  visibility: hidden;
+  font-size: 2em;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+}
+
+.dismissButton:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.cardImage {
+  position: relative;
+  width: 100%;
+  margin: -10% 0 0 0;
+}
+
+.cardBody {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.cardHeaderContent {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.cardHeaderText {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  padding-left: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .card:hover {
+    box-shadow: none;
+    background-color: rgba(0,0,0,0.1);
+  }
+
+  .dismissButton {
+    visibility: hidden;
+    display: none;
+  }
+
+}

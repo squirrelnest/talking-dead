@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { Switch, Route } from 'react-router'
 import 'styles/global.css'
-import CarList from 'routes/CarList'
-import CarDetail from 'routes/CarDetail'
+import CardList from 'containers/CardList'
+import { getCards } from 'actions/cardsActions'
 
-export default class App extends Component {
+export class App extends Component {
 
   constructor(props) {
     super(props);
@@ -13,16 +14,27 @@ export default class App extends Component {
     }
   }
 
+  componentWillMount() {
+    this.props.getCards()
+  }
+
   render() {
 
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={ CarList } />
-          <Route exact path="/cars" component={ CarList } />
-          <Route exact path="/cars/:carID" component={ CarDetail } />
+          <Route exact path="/" component={ CardList } />
+          <Route exact path="/cards" component={ CardList } />
         </Switch>
       </BrowserRouter>
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCards: () => dispatch(getCards())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App)

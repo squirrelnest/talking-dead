@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import cardsReducer from './carsReducer'
+import cardsReducer from './cardsReducer'
 
 const appReducer = combineReducers({
   cards: cardsReducer

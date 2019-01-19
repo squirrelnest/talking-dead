@@ -1,7 +1,3 @@
-.isAnimating {
-  transition: transform 400ms linear;
-}
-
 /* GLOBAL RESETS *************************************/
 
 * {
@@ -27,10 +23,6 @@ html, body {
 }
 
 /* COLORS *******************/
-
-.orange {
-  color: #fc9414;
-}
 
 .darkgrey {
   color: #222;
@@ -109,6 +101,12 @@ label {
   -webkit-transition: all .2s ease;
 }
 
+/* ANIMATION ****************/
+
+.isAnimating {
+  transition: transform 400ms linear;
+}
+
 /* IMAGES *******************/
 
 img {
@@ -162,10 +160,6 @@ img {
 .row {
   display: flex;
   align-items: center;
-}
-
-.border-top {
-  border-top: 1px solid #ccc;
 }
 
 .space-between {

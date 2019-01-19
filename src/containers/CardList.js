@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import classes from 'styles/CardList.module.css'
 import { connect } from 'react-redux'
 import { getNextCard, removeCard } from 'actions/cardsActions'
-import classes from 'styles/CardList.module.css'
 import { Card } from 'components/Card'
 import { PageHeader } from 'components/PageHeader'
 import { ProgressBar } from 'components/ProgressBar'
@@ -10,35 +10,34 @@ var originX = 0;
 var startX = 0;
 var endX = 0;
 var destinationX = 0;
+var list;
 
 export class CardList extends Component {
 
   constructor(props) {
     super(props)
     this.state={
-      headerLabel: 'Messages'
+      headerLabel: 'Messages',
+      page_number: 1
     }
   }
 
   componentDidMount() {
     // true sets event handler for bubbling phase so that parent element's event handler fires first
-    document.getElementById('page').addEventListener('scroll', this.handleScroll, false);
+    document.getElementById('list').addEventListener('scroll', this.handleScroll, false);
+    list = document.getElementById('list')
   }
 
   componentWillUnmount() {
-    document.getElementById('page').removeEventListener('scroll', this.handleScroll, false);
-  }
-
-  componentWillReceiveProps(nextProps){
-  if (nextProps.cards !== this.props.cards) {
-      this.setState({ cards: nextProps.cards });
-    }
+    document.getElementById('list').removeEventListener('scroll', this.handleScroll, false);
   }
 
   handleTouchStart = (event, id) => {
     let target = document.getElementById(id);
     let rect = target.getBoundingClientRect();
+    // record where finger first touched screen
     startX = event.touches[0].clientX;
+    // set starting point for left position of selected message card
     originX = startX - rect.left;
   }
 
@@ -51,16 +50,19 @@ export class CardList extends Component {
       target.style.transform = `translate3d(${endX-startX}px, 0, 0)`;
     }
     originX = 0;
-    destinationX = 0;
   }
 
   handleTouchEnd = (event, id) => {
     let target = document.getElementById(id);
-    if (Math.abs(endX - startX) > document.getElementById('cardList').clientWidth/4) {
+    if (destinationX === 0) { return; }
+    if (Math.abs(endX - startX) > document.getElementById('cards').clientWidth/3) {
+    // dismiss messages after significant amount of swipe
       this.props.removeCard(id);
       this.props.getNextCard(this.props.pageToken, 1)
     } else {
+    // snap message back into place if swipe was accidental
       target.classList.add('isAnimating');
+      destinationX = 0;
       target.style.transform = `translate3d(${-(destinationX-originX)}px, 0, 0)`;
     }
   }
@@ -69,14 +71,20 @@ export class CardList extends Component {
     const { getNextCard, error, loading, item_count, pageToken } = this.props
     // Exit if there's an error or data is loading or there are no more cards to load
     if (error || loading || item_count < 10) return
-    // If page has scrolled near bottom of cardList, increment page number and fetch next set of cards
-    if (window.innerHeight + document.getElementById('page').scrollTop === document.getElementById('page').scrollHeight) {
+    // If user scrolls near bottom of list, fetch next 10 cards (desktop) or next 1 card (mobile)
+    if (window.innerWidth > 600 && list.scrollTop + window.innerHeight + window.innerHeight/5 >= list.scrollHeight) {
       getNextCard(pageToken, 10)
+    } else if (window.innerWidth < 600 && list.scrollTop >= list.getBoundingClientRect().bottom * this.state.page_number) {
+      getNextCard(pageToken, 1)
+      this.setState({
+        page_number: this.state.page_number + 1
+      })
     }
   }
 
   handleDismiss = (event, id) => {
     event.preventDefault();
+    event.stopPropagation();
     this.props.removeCard(id);
     this.props.getNextCard(this.props.pageToken, 1);
   }
@@ -103,8 +111,8 @@ export class CardList extends Component {
         <PageHeader headerLabel={headerLabel} key='header'/>,
         <div id='wrapper' className='wrapper' key='wrapper'>
           { error && <div className='error'>{error}</div> }
-          <div id='page' className='page'>
-            <div id='cardList' className={[classes.cardsContainer].join(' ')}>{messages}</div>
+          <div id='list' className={classes.list}>
+            <div id='cards' className={classes.cards}>{messages}</div>
           </div>
           { loading && <ProgressBar /> }
         </div>
@@ -132,6 +140,5 @@ const mapDispatchToProps = (dispatch) => {
     removeCard: (id) => dispatch(removeCard(id))
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardList)

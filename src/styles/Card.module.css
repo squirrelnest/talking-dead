@@ -58,11 +58,6 @@
 
 @media only screen and (max-width: 600px) {
 
-  .card:hover {
-    box-shadow: none;
-    background-color: rgba(0,0,0,0.1);
-  }
-
   .dismissButton {
     visibility: hidden;
     display: none;

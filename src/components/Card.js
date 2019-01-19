@@ -14,6 +14,7 @@ export const Card = (props) => {
       onTouchStart={(event) => touchStartHandler(event, id)}
       onTouchMove={(event) => touchMoveHandler(event, id)}
       onTouchEnd={(event) => touchEndHandler(event, id)}
+      onTouchCancel={(event) => {console.log('cancelled'); return; }}
     >
       <div className={classes.cardHeader}>
         <div className={classes.cardHeaderContent}>

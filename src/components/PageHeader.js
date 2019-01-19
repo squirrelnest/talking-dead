@@ -7,9 +7,9 @@ export const PageHeader = (props) => {
 
   return (
     <div className={classes.pageHeader}>
+      <h3 className={classes.menuIcon}>&#9776;</h3>
       <h3>{headerLabel}</h3>
-        {children}
-      <h3>{new Date().toLocaleDateString()}</h3>
+      {children}
     </div>
   )
 

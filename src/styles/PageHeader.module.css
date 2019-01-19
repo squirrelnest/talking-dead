@@ -1,10 +1,10 @@
 .pageHeader {
-  text-align: left !important;
+  text-align: left;
   padding: 10px;
   width: 100vw;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: baseline;
   position: fixed;
   z-index: 2;
   background-color: purple;
@@ -12,4 +12,8 @@
 
 .pageHeader h3 {
   color: white;
+}
+
+.menuIcon {
+  padding-right: 10px;
 }

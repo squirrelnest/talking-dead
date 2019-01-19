@@ -1,6 +1,6 @@
 # infinite-messages
 
-Message viewer
+Mobile message viewer
 
 ## Features Implemented
 

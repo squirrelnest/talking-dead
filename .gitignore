@@ -19,9 +19,6 @@ node_modules
 
 # Build artifacts
 .idea
-/build
-build
-dist
 package-lock.json
 
 # misc

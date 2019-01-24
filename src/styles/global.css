@@ -24,16 +24,8 @@ html, body {
 
 /* COLORS *******************/
 
-.darkgrey {
-  color: #222;
-}
-
 .lightgrey {
   color: #999;
-}
-
-.lightestgrey {
-  color: #ccc;
 }
 
 /* TEXT *******************/
@@ -154,13 +146,9 @@ img {
   align-items: center;
 }
 
-.space-between {
-  justify-content: space-between;
-}
-
 /* RESPONSIVE STYLES *******************/
 
-@media(max-width: 600px) {
+@media(max-width: 700px) {
 
   .center {
     position: relative;

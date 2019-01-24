@@ -55,31 +55,7 @@ Scroll down or dismiss messages to load more messages.
 This code is by no means polished or complete. Shortcuts were made due to time constraints.
 Here are some areas for improvement:
 
-* Add password protection (encryption or htaccess) or move private files (such as photos) outside of web root
 * Add keyboard events to move between messages
 * Support other browsers and devices - this app was only tested on Chrome browsers on Pixel 2, Pixel 3 XL, and a Mac laptop
 * Handle vertical swipes
 * Add unit testing
-
-## Available Scripts
-
-In the project directory, you can run:
-
-`npm install`
-
-Installs dependencies.
-
-`npm start`
-
-Runs the app in development mode.
-Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
-
-`npm test`
-
-Launches the unit test runner.
-
-`npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It bundles React in production mode and optimizes the build for the best performance.<br>
-The build is minified.<br>

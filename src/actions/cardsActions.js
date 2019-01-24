@@ -30,7 +30,7 @@ export function removeCard(id) {
 export function getCards() {
   return (dispatch) => {
     dispatch(getCardsPending());
-    return fetch(`//message-list.appspot.com/messages`, {
+    return fetch(`https://message-list.appspot.com/messages`, {
       method: 'GET'
     })
       .then(response => response.json())
@@ -43,7 +43,7 @@ export function getCards() {
 export function getNextCard(pageToken, limit) {
   return (dispatch) => {
     dispatch(getCardsPending());
-    return fetch(`//message-list.appspot.com/messages?limit=${limit}&pageToken=${pageToken}`, {
+    return fetch(`https://message-list.appspot.com/messages?limit=${limit}&pageToken=${pageToken}`, {
       method: 'GET'
     })
       .then(response => response.json())

@@ -17,6 +17,7 @@ Infinite-scrolling, responsive, touch-enabled message viewer app made with React
 
 ## Usage
 
+Visit https://bit.ly/2Hrewjn or https://talking-dead.herokuapp.com/ to view in browser.
 On mobile, swipe left or right to dismiss a message.
 On desktop, hover over message and click the 'X' that appears in upper right corner of the card.
 Scroll down or dismiss messages to load more messages.

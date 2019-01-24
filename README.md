@@ -1,6 +1,5 @@
 # talking-dead
 
-<<<<<<< HEAD
 ## Summary
 
 Infinite-scrolling, responsive, touch-enabled message viewer app made with React and create-react-app. Made for mobile and desktop.
@@ -61,16 +60,6 @@ Here are some areas for improvement:
 * Support other browsers and devices - this app was only tested on Chrome browsers on Pixel 2, Pixel 3 XL, and a Mac laptop
 * Handle vertical swipes
 * Add unit testing
-=======
-Mobile message viewer
-
-## Features Implemented
-
-- [x] Responsive
-- [x] Touch enabled
-- [x] Swipe to dismiss and load more messages
-- [x] Infinite scrolling
->>>>>>> f64795c6e850b90d651b6a7a995bdc222de7a72d
 
 ## Available Scripts
 

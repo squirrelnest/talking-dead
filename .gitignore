@@ -18,6 +18,7 @@ lib-cov
 node_modules
 
 # Build artifacts
+build
 .idea
 package-lock.json
 

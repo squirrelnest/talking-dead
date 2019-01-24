@@ -11,10 +11,12 @@ import App from './App'
 // CREATE REDUX STORE AND APPLY DEVTOOLS AND MIDDLEWARE
 
 function configureStore(initialState={}) {
-    return createStore(
+  return createStore(
     rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(thunk)
+    compose(
+      applyMiddleware(thunk),
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
   )
 }
 

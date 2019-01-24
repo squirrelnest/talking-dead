@@ -7,7 +7,7 @@
   align-items: baseline;
   position: fixed;
   z-index: 2;
-  background-color: purple;
+  background-color: rgb(103, 58, 183);
 }
 
 .pageHeader h3 {

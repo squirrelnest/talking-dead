@@ -18,7 +18,7 @@ export const Card = (props) => {
     >
       <div className={classes.cardHeader}>
         <div className={classes.cardHeaderContent}>
-          <img src={'http://message-list.appspot.com/' + card.author.photoUrl} alt="author mug" />
+          <img src={'//message-list.appspot.com/' + card.author.photoUrl} alt="author mug" />
           <div className={classes.cardHeaderText}>
             <span>{card.author.name}</span>
             <span className='lightgrey'>{millisecondsToTime(Date.now()-Date.parse(card.updated))}</span>

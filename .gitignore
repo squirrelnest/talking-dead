@@ -17,6 +17,9 @@ lib-cov
 # Dependencies
 node_modules
 
+# Caching
+.firebase
+
 # Build artifacts
 build
 .idea

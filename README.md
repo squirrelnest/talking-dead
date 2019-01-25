@@ -2,7 +2,7 @@
 
 ## Summary
 
-Infinite-scrolling, responsive, touch-enabled message viewer app made with React and create-react-app. Made for mobile and desktop.
+Read garbled messages from beyond the grave with this responsive, infinite-scrolling, touch-enabled message viewer app made for mobile and desktop.
 
 ## Dependencies
 
@@ -17,7 +17,7 @@ Infinite-scrolling, responsive, touch-enabled message viewer app made with React
 
 ## Usage
 
-Visit https://bit.ly/2Hrewjn or https://talking-dead.herokuapp.com/ to view in browser.
+Visit https://bit.ly/2UdgKEo or https://talking-dead.firebaseapp.com/ to view in browser.
 On mobile, swipe left or right to dismiss a message.
 On desktop, hover over message and click the 'X' that appears in upper right corner of the card.
 Scroll down or dismiss messages to load more messages.

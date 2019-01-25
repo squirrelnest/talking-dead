@@ -7,9 +7,11 @@ const config = {
   storageBucket: "talking-dead.appspot.com",
   messagingSenderId: "344960091762"
 };
+
 firebase.initializeApp(config);
+
 export const firebaseAuthProvider = new firebase.auth.GoogleAuthProvider();
+
 export const auth = firebase.auth();
-export const database = firebase.database();
 
 export default firebase;

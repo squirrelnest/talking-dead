@@ -40,16 +40,13 @@ export class App extends Component {
   render() {
 
     return (
-        <BrowserRouter>
-          { this.state.authenticated ?
-          <Switch>
-            <Route exact path="/" component={ CardList } />
-            <Route exact path="/cards" component={ CardList } />
-          </Switch>
+      <div className="screen">
+        { this.state.authenticated ?
+          <CardList/>
           :
-          <button onClick={this.login}>Log In</button>
-          }
-        </BrowserRouter>
+          <button onClick={this.login} className="login">Log In</button>
+        }
+      </div>
     )
   }
 }

@@ -16,18 +16,6 @@ html, body {
   font-size: 16px; /* FF does not let you override its minimum font-size */
 }
 
-.screen {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
-/* COLORS *******************/
-
-.lightgrey {
-  color: #999;
-}
-
 /* TEXT *******************/
 
 p, span {
@@ -35,16 +23,6 @@ p, span {
   hyphens: none;
   text-align: left;
   margin: 0;
-}
-
-a {
-  color: currentColor;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-a:hover, Link:hover, .link:hover {
-  color: #fc9414;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -81,8 +59,6 @@ h5 {
   line-height: 1.5;
 }
 
-/* LABELS *******************/
-
 label {
   display: block;
   text-align: left;
@@ -93,12 +69,6 @@ label {
   -webkit-transition: all .2s ease;
 }
 
-/* ANIMATION ****************/
-
-.isAnimating {
-  transition: transform 400ms linear;
-}
-
 /* IMAGES *******************/
 
 img {
@@ -107,7 +77,20 @@ img {
   height: 50px;
 }
 
-/* ERROR MESSAGES *******************/
+
+/* COLORS *******************/
+
+.lightgrey {
+  color: #999;
+}
+
+/* ANIMATION ****************/
+
+.isAnimating {
+  transition: transform 400ms linear;
+}
+
+/* COMPONENTS *******************/
 
 .error {
   display: block;
@@ -119,7 +102,17 @@ img {
   position: fixed;
 }
 
-/* LAYOUT *******************/
+.login {
+  display: block;
+  font-size: 1.7rem;
+  color: white;
+  text-align: center;
+  margin: auto;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 500px;
+  background-color: purple;
+}
 
 .wrapper {
   display: block;
@@ -132,6 +125,17 @@ img {
   height: 100%;
   width: 100%;
   padding: 40px;
+}
+
+/* LAYOUT *******************/
+
+.screen {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .center {

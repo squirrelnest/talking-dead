@@ -1,0 +1,25 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  height: 100%;
+  margin: auto;
+  justify-content: center;
+}
+
+.loginBtn {
+  width: 100%;
+  background-color: purple;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+@media(max-width: 700px) {
+
+  .login {
+    width: 100%;
+    padding: 1rem;
+  }
+
+}

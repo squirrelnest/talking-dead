@@ -69,6 +69,12 @@ label {
   -webkit-transition: all .2s ease;
 }
 
+input {
+  font-size: 1.5rem;
+  text-align: center;
+  height: 3rem;
+}
+
 /* IMAGES *******************/
 
 img {
@@ -100,18 +106,6 @@ img {
   line-height: 1;
   color: white;
   position: fixed;
-}
-
-.login {
-  display: block;
-  font-size: 1.7rem;
-  color: white;
-  text-align: center;
-  margin: auto;
-  width: 10rem;
-  height: 10rem;
-  border-radius: 500px;
-  background-color: purple;
 }
 
 .wrapper {

@@ -6,11 +6,9 @@ import { Card } from 'components/Card'
 import { PageHeader } from 'components/PageHeader'
 import { ProgressBar } from 'components/ProgressBar'
 
-var originX = 0;
-var startX = 0;
-var endX = 0;
-var destinationX = 0;
-var list;
+var startX;
+var endX;
+var destinationX;
 
 export class CardList extends Component {
 
@@ -19,13 +17,15 @@ export class CardList extends Component {
     this.state={
       headerLabel: 'Messages',
       page_number: 1
+      // startX: 0,
+      // endX: 0,
+      // destinationX: 0
     }
   }
 
   componentDidMount() {
     // true sets event handler for bubbling phase so that parent element's event handler fires first
     document.getElementById('list').addEventListener('scroll', this.handleScroll, false);
-    list = document.getElementById('list')
   }
 
   componentWillUnmount() {
@@ -34,26 +34,31 @@ export class CardList extends Component {
 
   handleTouchStart = (event, id) => {
     let target = document.getElementById(id);
-    let rect = target.getBoundingClientRect();
-    // record where finger first touched screen
-    startX = event.touches[0].clientX;
-    // set starting point for left position of selected message card
-    originX = startX - rect.left;
+    // this.setState({
+    //   startX: event.touches[0].clientX
+    // })
+    startX = event.touches[0].clientX
   }
 
   handleTouchMove = (event, id) => {
     let target = document.getElementById(id);
-    let rect = target.getBoundingClientRect();
     for(var i=0; i<event.touches.length; i++) {
+      // this.setState({
+      //   endX: event.touches[i].clientX,
+      //   destinationX: event.touches[i].clientX - target.getBoundingClientRect().left
+      // })
       endX = event.touches[i].clientX
-      destinationX = endX - rect.left
+      destinationX = event.touches[i].clientX - target.getBoundingClientRect().left
       target.style.transform = `translate3d(${endX-startX}px, 0, 0)`;
     }
-    originX = 0;
   }
 
   handleTouchEnd = (event, id) => {
     let target = document.getElementById(id);
+    // this.setState({
+    //   endX: event.changedTouches[0].clientX,
+    // destinationX: event.changedTouches[0].clientX - target.getBoundingClientRect().left
+    // })
     if (destinationX === 0) { return; }
     if (Math.abs(endX - startX) > document.getElementById('cards').clientWidth/3) {
     // dismiss messages after significant amount of swipe
@@ -62,8 +67,7 @@ export class CardList extends Component {
     } else {
     // snap message back into place if swipe was accidental
       target.classList.add('isAnimating');
-      destinationX = 0;
-      target.style.transform = `translate3d(${-(destinationX-originX)}px, 0, 0)`;
+      target.style.transform = `translate3d(0px, 0, 0)`;
     }
   }
 
@@ -72,9 +76,9 @@ export class CardList extends Component {
     // Exit if there's an error or data is loading or there are no more cards to load
     if (error || loading || item_count < 10) return
     // If user scrolls near bottom of list, fetch next 10 cards (desktop) or next 1 card (mobile)
-    if (window.innerWidth > 600 && list.scrollTop + window.innerHeight + window.innerHeight/5 >= list.scrollHeight) {
+    if (window.innerWidth > 600 && document.getElementById('list').scrollTop + window.innerHeight + window.innerHeight/5 >= document.getElementById('list').scrollHeight) {
       getNextCard(pageToken, 10)
-    } else if (window.innerWidth < 600 && list.scrollTop >= list.getBoundingClientRect().bottom * this.state.page_number) {
+    } else if (window.innerWidth < 600 && document.getElementById('list').scrollTop >= document.getElementById('list').getBoundingClientRect().bottom * this.state.page_number) {
       getNextCard(pageToken, 1)
       this.setState({
         page_number: this.state.page_number + 1

@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Switch, Route } from 'react-router'
 import 'styles/global.css'
 import CardList from 'containers/CardList'
+import Login from 'components/Login'
 import { getCards } from 'actions/cardsActions'
 import { auth, firebaseAuthProvider } from './firebase.js';
 
@@ -21,20 +22,34 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    auth.onAuthStateChanged((authenticated) => {
-      if (authenticated) {
-        this.setState({ authenticated });
-      }
-    });
+    // Firebase Auth disabled to protect review panel identities
+    // auth.onAuthStateChanged((authenticated) => {
+    //   if (authenticated) {
+    //     this.setState({ authenticated });
+    //   }
+    // });
   }
 
-  login = () => {
-    auth.signInWithPopup(firebaseAuthProvider)
-      .then((result) => {
-        this.setState({
-          user: result.user
-        });
-      });
+  // Firebase Auth disabled to protect review panel identities
+  // login = () => {
+  //   auth.signInWithPopup(firebaseAuthProvider)
+  //     .then((result) => {
+  //       this.setState({
+  //         user: result.user
+  //       });
+  //     });
+  // }
+
+  login = (event, input) => {
+    event.preventDefault()
+    // not very secure w/o hashing but keeps out crawlers and riff raff
+    if (input.toLowerCase() === 'hordor') {
+      this.setState({
+        authenticated: !this.state.authenticated
+      })
+    } else {
+      alert('Wrong password')
+    }
   }
 
   render() {
@@ -44,7 +59,7 @@ export class App extends Component {
         { this.state.authenticated ?
           <CardList/>
           :
-          <button onClick={this.login} className="login">Log In</button>
+          <Login login={this.login}/>
         }
       </div>
     )
